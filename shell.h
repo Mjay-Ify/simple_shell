@@ -12,11 +12,16 @@
 #include <signal.h>
 #include <limits.h>
 
-#define BUFSIZE 1024
-#define TOK_BUFSIZE 128
-#define TOK_DELIM " \t\r\n\a"
+#define BUFFERSIZE 1024
+#define TOKEN_BUFFERSIZE 128
+#define TOKEN_DELIM " \t\r\n\a"
+
 char *strcat_custom(data_container *, char *, char *, char *);
 char *fetch_error_custom(data_container *data);
 char *missing_file_error(data_container *data);
 char *shell_terminate_error(data_container *data);
+
+char *system_environment_error(data_container *data)
+char *route_126_error_alert(data_container *data)
+
 #endif

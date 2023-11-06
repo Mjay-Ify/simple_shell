@@ -9,15 +9,15 @@
 void support_env_tasks(void)
 {
 	const char *support =
-	"env: env [option] [name=value] [command [args]]\n\t";
+	"env: env [option] [name=value] [command [args]]\n"
+	"\tDisplay the shell's environment.\n";
 
-	"Display the shell's environment.\n";
 	write(STDOUT_FILENO, support, _strlen(support));
 
 }
 /**
- * env_variable_assist - Display help for the 'setenv' function.
- * Return: nothing
+ * env_variable_support - Display assist for the 'setenv' function.
+ * Return: void
  */
 void env_variable_support(void)
 {
@@ -35,8 +35,9 @@ void env_variable_support(void)
  */
 void support_unsetenv_command(void)
 {
-	char *support = "unsetenv: unsetenv (const char *name)\n\t"
-			"\tUse this command to eliminate an environment entry completely.\n";
+	char *support =
+	"unsetenv: unsetenv (const char *name)\n\t"
+	"\tUse this command to eliminate an environment entry completely.\n";
 
 
 	write(STDOUT_FILENO, support, _strlen(support));
@@ -44,27 +45,35 @@ void support_unsetenv_command(void)
 
 
 /**
- * support_general_command - Display help information for general commands
+ * assist_general_command - Display help information for general commands
  * Return: nothing
  */
-void support_general_command(void)
+void assist_general_command(void)
 {
-	char *support = "^-^ bash, version 1.0(1)-release\n";
+	const char *assist =
+	"^-^ bash, version 1.0(1)-release\n"
+	"The internal commands have been defined. Please use 'assist' to view the list.\n"
+	"If you'd like additional information about the 'name' function, simply type 'assist name.'.\n"
+	"alias: alias [name=['string']]\n"
+	"cd: cd [-L|[-P [-e]] [-@]] [dir]\n"
+	"exit: exit [n]\n"
+	"env: env [option] [name=value] [command args]\n"
+	"setenv: setenv [variable] [value]\n"
+	"unsetenv: unsetenv [variable]\n";
 
-
-	write(STDOUT_FILENO, help, _strlen(help));
+	write(STDOUT_FILENO, help, _strlen(assist));
 }
 /**
- * aux_help_exit - Help information fot the builint exit
- * Return: nothing
+ * print_exit_help - Help provide information for exit command.
+ *
+ * Return: void
  */
-void aux_help_exit(void)
+void print_exit_help(void)
 {
-	char *help = "exit: exit [n]\n Exit shell.\n";
+	const char *help =
+	"exit: exit [n]\n Exit shell.\n"
+	"Exits the shell with a status of N. If N is omitted,
+	"the exit status is that of the last command executed.\n ";
 
-	write(STDOUT_FILENO, help, _strlen(help));
-	help = "Exits the shell with a status of N. If N is ommited, the exit";
-	write(STDOUT_FILENO, help, _strlen(help));
-	help = "status is that of the last command executed\n";
 	write(STDOUT_FILENO, help, _strlen(help));
 }

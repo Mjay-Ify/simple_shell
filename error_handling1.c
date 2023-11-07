@@ -14,8 +14,8 @@ char *system_environment_error(data_container *data)
 	char *err, *ver, *message;
 
 	ver = aux_itoa(data->counter);
-	message = ": Unable to add/remove from environment\n";
-	len = _strlen(data->av[0]) + _strlen(ver_str);
+	message = ": Unable to add/remove from the environment\n";
+	len = _strlen(data->av[0]) + _strlen(ver);
 	len += _strlen(data->args[0]) + _strlen(message) + 4;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == 0)
@@ -37,11 +37,12 @@ char *system_environment_error(data_container *data)
 	return (err);
 }
 /**
- * route_126_error_alert - error message for route and failure access revoked
+ * route_126_error_alert - error message for route
+ * and access revocation failure
  *
- * @data: Imprtant data
+ * @data: Important data
  *
- * Return: String of an error .
+ * Return: String of an error.
  */
 char *route_126_error_alert(data_container *data)
 {

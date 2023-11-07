@@ -15,7 +15,7 @@ char *strcat_custom(data_container *data, char *message, char *err, char *ver)
 	char *error_flag = (char *)malloc(3);
 
 	_strcpy(err, data->av[0]);
-	_strcat(error, ": ");
+	_strcat(err, ": ");
 	_strcat(err, ver);
 	_strcat(err, ": ");
 	_strcat(err, data->args[0]);
@@ -43,7 +43,7 @@ char *fetch_error_custom(data_container *data)
 	ver = aux_itoa(data->counter);
 	message = (data->args[1][0] == '-') ?
 		": error option " :
-		": can't custom to ";
+		": can't cd to ";
 	id = (data->args[1][0] == '-') ? 2 : _strlen(data->args[1]);
 
 	len = _strlen(data->av[0]) + _strlen(data->args[0])
@@ -86,7 +86,7 @@ char *missing_file_error(data_container *data)
 	_strcat(err, ver);
 	_strcat(err, ": ");
 	_strcat(err, data->args[0]);
-	_strcat(err, ": missing\n");
+	_strcat(err, ": not found\n");
 	_strcat(err, "\0");
 	free(ver);
 	return (err);
@@ -117,7 +117,7 @@ char *shell_terminate_error(data_container *data)
 	_strcat(err, ver);
 	_strcat(err, ": ");
 	_strcat(err, data->args[0]);
-	_strcat(err, ": error number: ");
+	_strcat(err, ": error number:");
 	_strcat(err, data->args[1]);
 	_strcat(err, "\n\0");
 	free(ver);

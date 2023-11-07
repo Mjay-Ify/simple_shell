@@ -21,6 +21,18 @@ char *fetch_error_custom(data_container *data);
 char *missing_file_error(data_container *data);
 char *shell_terminate_error(data_container *data);
 
+
+void support_unsetenv_command(void)
+void env_variable_support(void)
+void support_env_tasks(void)
+void assist_general_command(void)
+void print_exit_help(void)
+
+
+void env_assist_alias(void)
+void env_assist(void) 
+void env_assist_cd(void)  
+
 char *system_environment_error(data_container *data)
 char *route_126_error_alert(data_container *data)
 

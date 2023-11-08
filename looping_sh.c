@@ -2,16 +2,16 @@
 
 
 /**
- * del_comment - function to deletes comments from the inserted
- * @insert: inserted string
- * Return: insert without the comments
+ * del_comment - Removes comments from the input string
+ * @insert: The input string containing comments.
+ * Return: The input string with comment removed
  */
 char *del_comment(char *insert)
 {
 	int n, nxt;
 
 	nxt = 0;
-	for (n = 0; insert[n];n++)
+	for (n = 0; insert[n]; n++)
 	{
 		if (insert[n] == '#')
 		{
@@ -37,39 +37,39 @@ char *del_comment(char *insert)
 
 /**
  * looping_sh - for looping of shell
- * @sh_data: data relevant are av, insert, args
+ * @data: data structure containing relevant information are av,
+ * insert, args
  */
-void looping_sh(data_container *sh_data)
+void looping_sh(data_container *data)
 {
 	int loop_sh, n;
 	char *insert;
 
 	loop_sh = 1;
-	while (loop_sh == 1)
-	{
+	do {
 		write(STDIN_FILENO, "^-^ ", 4);
-		input = read_line(&n);
+		insert = read_line(&n);
 		if (n != -1)
 		{
 			insert = del_comment(insert);
 			if (insert == NULL)
 				continue;
 
-			if (check_syntax_error(sh_data, insert) == 1)
+			if (check_syntax_error(data, insert) == 1)
 			{
-				sh_data->stat = 2;
+				data->status = 2;
 				free(insert);
 				continue;
 			}
-			insert = rep_var(insert, sh_data);
-			loop = crack_cmd(sh_data, insert);
-			sh_data->count += 1;
+			insert = rep_var(insert, data);
+			loop_sh = crack_cmd(data, insert);
+			data->count += 1;
 			free(insert);
 		}
 		else
 		{
 			loop_sh = 0;
-			free(insert);
 		}
-	}
+
+	} while (loop_sh);
 }

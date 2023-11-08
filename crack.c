@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * replace_char - To replace | and & for non-printed chars
- * @insert: inserted string
- * @bool: type of replace
- * Return: the replaced string
+ * replace_char - Replace non-printable characters with '|' or '&'.
+ * @insert: The string in which replacements are made.
+ * @bool: A flag indicating the type of replacement ('|' or '&').
+ * Return: The updated string after replacement.
  */
 
 char *replace_char(char *insert, int bool)
@@ -44,10 +44,10 @@ char *replace_char(char *insert, int bool)
 }
 
 /**
- * add_separators - add separators & command lines in the lists
+ * add_separators - Insert and categorize separators or command lines.
  * @sep_head: head of the  separator list
- * @line_head: head of the command lines list
- * @insert: inserted string
+ * @line_head: The head of the command lines list.
+ * @insert: string to be inserted, which may contain sep or command lines.
  */
 void add_separators(separator_list **sep_head, c_line_list **line_head, char *insert)
 {
@@ -77,12 +77,12 @@ void add_separators(separator_list **sep_head, c_line_list **line_head, char *in
 }
 
 /**
- * next_line - function to proceed to the next command line stored
- * @sep_list: separator list
- * @line_list: command line list
- * @datash: data structure
+ * next_line - Move to the next stored command line or separator entry.
+ * @sep_list: The list of separator.
+ * @line_list: The list of command line.
+ * @data: data format
  */
-void next_line(sep_list **separator_list, c_line_list **line_list, data_container *sh_data)
+void next_line(sep_list **separator_list, c_line_list **line_list, data_container *data)
 {
 	int s_loop;
 	separator_list *sep_ls;
@@ -94,7 +94,7 @@ void next_line(sep_list **separator_list, c_line_list **line_list, data_containe
 
 	while (sep_ls != NULL && s_loop)
 	{
-		if (sh_data->status == 0)
+		if (data->status == 0)
 		{
 			if (sep_ls->sep == '&' || sep_ls->sep == ';')
 				s_loop = 0;
@@ -117,12 +117,12 @@ void next_line(sep_list **separator_list, c_line_list **line_list, data_containe
 }
 
 /**
- * crack_cmd - function to divide command line by the separators ;, | and &, and executes them
- * @sh_data: shell data structure
- * @insert: inserted string
- * Return: 0 to quit, 1 to proceed
+ * crack_cmd - Parse and execute commands separated by ;, |, and &.
+ * @data: shell's data structure
+ * @insert: An optional inserted string
+ * Return: 0 to quit, 1 to contiune processing
  */
-int crack_cmd(data_container *sh_data, char *insert)
+int crack_cmd(data_container *data, char *insert)
 {
 
 	separator_list *sep_head, *sep_list;
@@ -139,15 +139,15 @@ int crack_cmd(data_container *sh_data, char *insert)
 
 	while (line_list != NULL)
 	{
-		sh_data->insert = line_list->line;
-		sh_data->args = split_line(sh_data->insert);
-		sl_loop = exec_line(sh_data);
-		free(sh_data->args);
+		data->insert = line_list->line;
+		data->args = split_line(data->insert);
+		sl_loop = exec_line(data);
+		free(data->args);
 
 		if (sl_loop == 0)
 			break;
 
-		next_line(&sep_list, &line_list, sh_data);
+		next_line(&sep_list, &line_list, data);
 
 		if (list_l != NULL)
 			line_list = line_list->nxt;
@@ -162,9 +162,9 @@ int crack_cmd(data_container *sh_data, char *insert)
 }
 
 /**
- * split_line - function to tokenizes the input string
- * @input: input string.
- * Return: string splitted.
+ * split_line - Tokenize the input string into individual parts.
+ * @input: input string to be tokenized
+ * Return: An array of tokens extracted from the input string.
  */
 char **crack_line(char *insert)
 {

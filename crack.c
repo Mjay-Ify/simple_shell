@@ -59,11 +59,11 @@ void add_separators(separator_list **sep_head, c_line_list **line_head, char *in
 	for (n = 0; insert[n]; n++)
 	{
 		if (input[n] == ';')
-			add_sep_node_end(sep_head, insert[n]);
+			append_sep_to_end(sep_head, insert[n]);
 
 		if (insert[n] == '|' || insert[n] == '&')
 		{
-			add_sep_node_end(sep_head, insert[n]);
+			append_sep_to_end(sep_head, insert[n]);
 			n++;
 		}
 	}
@@ -71,7 +71,7 @@ void add_separators(separator_list **sep_head, c_line_list **line_head, char *in
 	c_line = _strtok(insert, ";|&");
 	do {
 		c_line = replace_char(line, 1);
-		add_line_node_end(line_head, c_line);
+		append_line_to_end((line_head, c_line);
 		c_line = _strtok(NULL, ";|&");
 	} while (c_line != NULL);
 }

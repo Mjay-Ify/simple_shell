@@ -50,54 +50,54 @@ void deallocate_sep_list(sep_list **list)
 }
 
 /**
- * add_line_node_end - function to adds command line
+ * append_line_to_end - function to adds command line
  * @head: linked list head
  * @line: command line
  * Return: The head address
  */
 
-line_list *add_line_node_end(line_list **head, char *line)
+line_list *append_line_to_end(line_list **list, char *line)
 {
-	line_list *new, *temp;
+	line_list *new_node, *temp;
 
-	new = malloc(sizeof(line_list));
-	if (new == NULL)
+	new_node = malloc(sizeof(line_list));
+	if (new_node == NULL)
 		return (NULL);
 
-	new->line = line;
-	new->next = NULL;
-	temp = *head;
+	new_node->line = line;
+	new_node->next = NULL;
+	temp = *list;
 
 	if (temp == NULL)
-		*head = new;
+		*list = new_node;
 	else
 	{
 		while (temp->next != NULL)
 			temp = temp->next;
-		temp->next = new;
+		temp->next = new_node;
 	}
 
-	return (*head);
+	return (*list);
 }
 
 /**
  * free_line_list - function to free line_list
- * @head: linked list head
- * Return: nothing
+ * @list: linked list
+ * Return: void
  */
-void free_line_list(line_list **head)
+void free_line_list(line_list **list)
 {
 	line_list *temp;
-	line_list *curr;
+	line_list *current;
 
-	if (head != NULL)
+	if (list != NULL)
 	{
-		curr = *head;
-		while ((temp = curr) != NULL)
+		current = *list;
+		while ((temp = current) != NULL)
 		{
-			curr = curr->next;
+			current = current->next;
 			free(temp);
 		}
-		*head = NULL;
+		*list = NULL;
 	}
 }

@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * verify_envn - to verify if the typed variable is an envn var
- * @head: the linked list head
- * @insert: inserted string
- * @sh_data: structure of data
+ * verify_envn - to verift if the ariable is an envnironment variable
+ * @list: the linked list
+ * @insert: The input string conatining comments
+ * @data: structure of data
  */
-void verify_envn(r_var **head, char *insert, data_container *sh_data)
+void verify_envn(r_var **heads, char *insert, data_container *data)
 {
 	int rows, col, n, value;
 	char **envn;
 
-	envn = sh_data->_environ;
+	envn = data->_environ;
 	for (rows = 0; envn[rows]; rows++)
 	{
 		for (n = 1, col = 0; envn[rows][col]; col++)
@@ -19,7 +19,7 @@ void verify_envn(r_var **head, char *insert, data_container *sh_data)
 			if (envn[rows][col] == '=')
 			{
 				value = _strlen(envn[rows] + col + 1);
-				add_rvar_node(head, n, envn[rows] + col + 1, value);
+				add_rvar_node(heads, n, envn[rows] + col + 1, value);
 				return;
 			}
 
@@ -36,17 +36,17 @@ void verify_envn(r_var **head, char *insert, data_container *sh_data)
 			break;
 	}
 
-	add_rvar_node(head, n, NULL, 0);
+	add_rvar_node(heads, n, NULL, 0);
 }
 
 /**
- * verify_var - to detect if the typed var is $$ or $?
- * @head: linked list head
- * @insert: insert string
+ * verify_var - to verify if the typed var is $$ or $?
+ * @head: The linked list
+ * @insert: insert string containing commdnrts
  * @stat: last status of the Shell
- * @sh_data: data struct
+ * @data: The format of data
  */
-int verify_var(r_var **head, char *insert, char *stat, data_container *sh_data)
+int verify_var(r_var **heads, char *insert, char *stat, data_container *data)
 {
 	int n, list, lpid;
 
@@ -58,21 +58,21 @@ int verify_var(r_var **head, char *insert, char *stat, data_container *sh_data)
 		if (insert[n] == '$')
 		{
 			if (insert[n + 1] == '?')
-				add_rvar_node(head, 2, stat, list), n++;
+				add_rvar_node(heads, 2, stat, list), n++;
 			else if (insert[n + 1] == '$')
-				add_rvar_node(head, 2, sh_data->pid, lpid), n++;
+				add_rvar_node(heads, 2, data->pid, lpid), n++;
 			else if (insert[n + 1] == '\n')
-				add_rvar_node(head, 0, NULL, 0);
+				add_rvar_node(heads, 0, NULL, 0);
 			else if (insert[n + 1] == '\0')
-				add_rvar_node(head, 0, NULL, 0);
+				add_rvar_node(heads, 0, NULL, 0);
 			else if (insert[n + 1] == ' ')
-				add_rvar_node(head, 0, NULL, 0);
+				add_rvar_node(heads, 0, NULL, 0);
 			else if (insert[n + 1] == '\t')
-				add_rvar_node(head, 0, NULL, 0);
+				add_rvar_node(heads, 0, NULL, 0);
 			else if (insert[n + 1] == ';')
-				add_rvar_node(head, 0, NULL, 0);
+				add_rvar_node(heads, 0, NULL, 0);
 			else
-				verify_envn(head, insert + n, sh_data);
+				verify_envn(heads, insert + n, data);
 		}
 	}
 
@@ -81,18 +81,18 @@ int verify_var(r_var **head, char *insert, char *stat, data_container *sh_data)
 
 /**
  * rep_insert - function that replaces string to variables
- * @head: head of linked list
- * @inser: insert string
+ * @list: head of linked list
+ * @insert: insert string
  * @new_insert: new inserted string to replace
  * @n_len: the new length
  * Return: replaced insert string
  */
-char *rep_insert(r_var **head, char *insert, char *new_insert, int n_len)
+char *rep_insert(r_var **list, char *insert, char *new_insert, int n_len)
 {
 	r_var *index;
 	int a, b, n;
 
-	index = *head;
+	index = *list;
 	for (b = a = 0; a < n_len; a++)
 	{
 		if (insert[b] == '$')
@@ -133,26 +133,26 @@ char *rep_insert(r_var **head, char *insert, char *new_insert, int n_len)
 /**
  * replace_var - To call the functions to replace the string into variable
  * @insert: the insert string
- * @sh_data: structure of data
+ * @data: structure of data
  * Return: replace insert string
  */
-char *replace_var(char *insert, data_shell *sh_data)
+char *replace_var(char *insert, data_container *data)
 {
-	r_var *head, *index;
+	r_var *list, *index;
 	char *stat, *new_insert;
 	int o_len, n_len;
 
-	stat = aux_itoa(sh_data->stat);
-	head = NULL;
-	o_len = verify_var(&head, insert, stat, sh_data);
+	stat = aux_itoa(data->stat);
+	list = NULL;
+	o_len = verify_var(&list, insert, stat, data);
 
-	if (head == NULL)
+	if (list == NULL)
 	{
 		free(stat);
 		return (insert);
 	}
 
-	index = head;
+	index = list;
 	n_len = 0;
 
 	while (index != NULL)
@@ -164,10 +164,10 @@ char *replace_var(char *insert, data_shell *sh_data)
 	n_len += o_len;
 	new_insert = malloc(sizeof(char) * (n_len + 1));
 	new_insert[n_len] = '\0';
-	new_insert = rep_insert(&head, insert, new_insert, n_len);
+	new_insert = rep_insert(&list, insert, new_insert, n_len);
 	free(insert);
 	free(stat);
-	free_rvar_list(&head);
+	free_rvar_list(&list);
 
 	return (new_insert);
 }

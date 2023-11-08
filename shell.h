@@ -14,7 +14,7 @@
 
 #define BUFFERSIZE 1024
 #define TOKEN_BUFFERSIZE 128
-#define TOKEN_DELIM " \t\r\n\a"
+#define TOKEN_SEP " \t\r\n\a"
 
 char *strcat_custom(data_container *, char *, char *, char *);
 char *fetch_error_custom(data_container *data);
@@ -30,6 +30,9 @@ void print_exit_help(void)
 void env_assist_alias(void)
 void env_assist(void) 
 void env_assist_cd(void)  
+
+char *del_comment(char *insert);
+void looping_sh(data_container *sh_data);
 
 char *system_environment_error(data_container *data)
 char *route_126_error_alert(data_container *data)

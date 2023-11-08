@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * replace_char - To replace | and & for non-printed chars
@@ -173,7 +173,7 @@ char **crack_line(char *insert)
 	char **toks;
 	char *tok;
 
-	bt_size = TOK_BUFSIZE;
+	bt_size = TOK_BUFFERSIZE;
 	toks = malloc(sizeof(char *) * (bt_size));
 	if (toks == NULL)
 	{
@@ -181,14 +181,14 @@ char **crack_line(char *insert)
 		exit(EXIT_FAILURE);
 	}
 
-	tok = _strtok(insert, TOK_DELIM);
+	tok = _strtok(insert, TOKEN_SEP);
 	tok[0] = tok;
 
 	for (n = 1; tok != NULL; n++)
 	{
 		if (n == bt_size)
 		{
-			bt_size += TOK_BUFSIZE;
+			bt_size += TOKEN_BUFFERSIZE;
 			toks = _reallocdp(toks, n, sizeof(char *) * bt_size);
 			if (toks == NULL)
 			{
@@ -196,7 +196,7 @@ char **crack_line(char *insert)
 				exit(EXIT_FAILURE);
 			}
 		}
-		tok = _strtok(NULL, TOK_DELIM);
+		tok = _strtok(NULL, TOKEN_SEP);
 		toks[i] = tok;
 	}
 

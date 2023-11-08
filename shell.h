@@ -37,6 +37,11 @@ void looping_sh(data_container *sh_data);
 char *system_environment_error(data_container *data)
 char *route_126_error_alert(data_container *data)
 
+char *replace_var(char *insert, data_shell *sh_data);
+char *rep_insert(r_var **head, char *insert, char *new_insert, int n_len);
+int verify_var(r_var **head, char *insert, char *stat, data_container *sh_data);
+void verify_envn(r_var **head, char *insert, data_container *sh_data);
+
 char **crack_line(char *insert);
 int crack_cmd(data_container *sh_data, char *insert);
 void next_line(sep_list **separator_list, c_line_list **line_list, data_container *sh_data);

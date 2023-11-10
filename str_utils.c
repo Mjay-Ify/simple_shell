@@ -123,12 +123,13 @@ char *custom_strtok(char input_str[], const char *delimiter)
 
 int _isdigit(const char *s)
 {
-	unsigned int i;
+	unsigned int i = 0;
 
-	for (i = 0; s[i]; i++)
+	while (s[i] != '\0')
 	{
-		if (s[i] < 48 || s[i] > 57)
+		if (s[i] < '0' || s[i] > '9')
 			return (0);
+		i++;
 	}
 	return (1);
 }

@@ -71,7 +71,8 @@ char *custom_strtok(char input_str[], const char *delimiter)
 {
 	static char *current_token, *str_end;
 	char *token_start;
-	unsigned int i, bool;
+	unsigned int i = 0;
+	_Bool bool = false;
 
 	if (input_str != NULL)
 	{
@@ -89,7 +90,7 @@ char *custom_strtok(char input_str[], const char *delimiter)
 	while (*current_token)
 	{
 		/*Breaking loop finding the next token*/
-		if (cuurent_token != current_token)
+		if (curent_token != current_token)
 			if (*current_token && *(current_token - 1) == '\0')
 				break;
 		/*Replacing delimiter for null char*/
@@ -104,11 +105,11 @@ char *custom_strtok(char input_str[], const char *delimiter)
 			}
 			i++;
 		}
-		if (!bool == 0 && *current_token) /*Str != Delim*/
+		if (bool == false == 0 && *current_token) /*Str != Delim*/
 			bool = true;
 		current_token++;
 	}
-	if (!bool) /*Str == Delim*/
+	if (bool == false) /*Str == Delim*/
 		return (NULL);
 	return (token_start);
 }

@@ -115,21 +115,19 @@ char *custom_strtok(char input_str[], const char *delimiter)
 }
 
 /**
- * _isdigit - To defines if string passed is a number
+ * is_number - Checks if string passed is a number
  *
- * @s: input string
- * Return: 1 if string is a number. 0 in other case.
+ * @str: input string
+ * Return: 1 if string is a number. otherwise 0.
  */
-
-int _isdigit(const char *s)
+int is_number(const char *str)
 {
-	unsigned int i = 0;
 
-	while (s[i] != '\0')
+	for (unsigned int i = 0; str[i] i++)
 	{
-		if (s[i] < '0' || s[i] > '9')
+		if (str[i] < 48 || str[i] > 57)
 			return (0);
-		i++;
 	}
 	return (1);
+}
 }

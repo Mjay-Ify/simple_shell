@@ -2,7 +2,7 @@
 
 /**
  * verify_envn - to verift if the ariable is an envnironment variable
- * @list: the linked list
+ * @heads: the linked list
  * @insert: The input string conatining comments
  * @data: structure of data
  */
@@ -32,8 +32,11 @@ void verify_envn(r_var **heads, char *insert, data_container *data)
 
 	for (n = 0; insert[n]; n++)
 	{
-		if (insert[n] == ' ' || insert[n] == '\t' || insert[n] == ';' || insert[n] == '\n')
-			break;
+		if (insert[n] == ' ' ||
+		insert[n] == '\t' ||
+		insert[n] == ';' ||
+		insert[n] == '\n')
+		break;
 	}
 
 	add_rvar_node(heads, n, NULL, 0);
@@ -41,10 +44,11 @@ void verify_envn(r_var **heads, char *insert, data_container *data)
 
 /**
  * verify_var - to verify if the typed var is $$ or $?
- * @head: The linked list
+ * @heads: The linked list
  * @insert: insert string containing commdnrts
  * @stat: last status of the Shell
  * @data: The format of data
+ * Return: 1 if the variable is valid, 0 otherwise.
  */
 int verify_var(r_var **heads, char *insert, char *stat, data_container *data)
 {

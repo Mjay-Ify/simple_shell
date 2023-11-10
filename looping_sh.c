@@ -8,9 +8,9 @@
  */
 char *del_comment(char *insert)
 {
-	int n, nxt;
+	int n, next;
 
-	nxt = 0;
+	next = 0;
 	for (n = 0; insert[n]; n++)
 	{
 		if (insert[n] == '#')
@@ -22,14 +22,14 @@ char *del_comment(char *insert)
 			}
 
 			if (insert[n - 1] == ' ' || insert[n - 1] == '\t' || insert[n - 1] == ';')
-				nxt = n;
+				next = n;
 		}
 	}
 
-	if (nxt != 0)
+	if (next != 0)
 	{
-		insert = _realloc(insert, n, nxt + 1);
-		insert[nxt] = '\0';
+		insert = _realloc(insert, n, next + 1);
+		insert[next] = '\0';
 	}
 
 	return (insert);

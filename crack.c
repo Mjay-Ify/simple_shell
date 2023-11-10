@@ -44,12 +44,12 @@ char *replace_char(char *insert, int bool)
 }
 
 /**
- * add_separators - Insert and categorize separators or command lines.
+ * add_sep - Insert and categorize separators or command lines.
  * @sep_head: head of the  separator list
  * @line_head: The head of the command lines list.
  * @insert: string to be inserted, which may contain sep or command lines.
  */
-void add_separators(separator_list **sep_head, c_line_list **line_head, char *insert)
+void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert)
 {
 	int n;
 	char *c_line;
@@ -70,7 +70,7 @@ void add_separators(separator_list **sep_head, c_line_list **line_head, char *in
 
 	c_line = _strtok(insert, ";|&");
 	do {
-		c_line = replace_char(line, 1);
+		c_line = replace_char(c_line, 1);
 		append_line_to_end((line_head, c_line);
 		c_line = _strtok(NULL, ";|&");
 	} while (c_line != NULL);
@@ -79,10 +79,10 @@ void add_separators(separator_list **sep_head, c_line_list **line_head, char *in
 /**
  * next_line - Move to the next stored command line or separator entry.
  * @sep_list: The list of separator.
- * @line_list: The list of command line.
+ * @l_list: The list of command line.
  * @data: data format
  */
-void next_line(sep_list **separator_list, c_line_list **line_list, data_container *data)
+void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data)
 {
 	int s_loop;
 	separator_list *sep_ls;
@@ -99,17 +99,17 @@ void next_line(sep_list **separator_list, c_line_list **line_list, data_containe
 			if (sep_ls->sep == '&' || sep_ls->sep == ';')
 				s_loop = 0;
 			if (sep_ls->sep == '|')
-				line_ls = line_ls->nxt, sep_ls = sep_ls->nxt;
+				line_ls = line_ls->next, sep_ls = sep_ls->next;
 		}
 		else
 		{
 			if (sep_ls->sep == '|' || sep_ls->sep == ';')
 				s_loop = 0;
 			if (sep_ls->sep == '&')
-				line_ls = line_ls->nxt, sep_ls = sep_ls->nxt;
+				line_ls = line_ls->next, sep_ls = sep_ls->next;
 		}
 		if (sep_ls != NULL && !s_loop)
-			sep_ls = sep_ls->nxt;
+			sep_ls = sep_ls->next;
 	}
 
 	*sep_list = sep_ls;
@@ -162,8 +162,8 @@ int crack_cmd(data_container *data, char *insert)
 }
 
 /**
- * split_line - Tokenize the input string into individual parts.
- * @input: input string to be tokenized
+ * crack_line - Tokenize the input string into individual parts.
+ * @insert: insert string to be tokenized
  * Return: An array of tokens extracted from the input string.
  */
 char **crack_line(char *insert)

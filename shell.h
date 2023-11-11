@@ -74,4 +74,11 @@ void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data);
 void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert);
 char *replace_char(char *insert, int bool);
 
+int obtain_errors(data_container *sh_data, int val);
+
+void assign_line(char **line_buff, size_t *a, char *buff, size_t b)
+ssize_t obtain_line(char **line_buff, size_t *i, FILE *str);
+
+char *read_input(int *n);
+
 #endif

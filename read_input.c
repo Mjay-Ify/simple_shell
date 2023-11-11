@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * read_input - function to reads the inserted string.

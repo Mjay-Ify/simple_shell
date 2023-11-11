@@ -76,9 +76,11 @@ char *replace_char(char *insert, int bool);
 
 int obtain_errors(data_container *sh_data, int val);
 
-void assign_line(char **line_buff, size_t *a, char *buff, size_t b)
+void assign_line(char **line_buff, size_t *a, char *buff, size_t b);
 ssize_t obtain_line(char **line_buff, size_t *i, FILE *str);
 
 char *read_input(int *n);
+
+void obtain_signal(int sig_val);
 
 #endif

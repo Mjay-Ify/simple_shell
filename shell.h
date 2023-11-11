@@ -80,7 +80,8 @@ ssize_t obtain_line(char **line_buff, size_t *i, FILE *str);
 char *read_input(int *n);
 void obtain_signal(int sig_val);
 int obtain_help(data_container *sh_data);
-
 int (*obtain_builtins(char *command))(data_container *);
+
+int close_shell(data_container *sh_data);
 
 #endif

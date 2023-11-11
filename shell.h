@@ -81,4 +81,6 @@ char *read_input(int *n);
 void obtain_signal(int sig_val);
 int obtain_help(data_container *sh_data);
 
+int (*obtain_builtins(char *command))(data_container *);
+
 #endif

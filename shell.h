@@ -84,4 +84,6 @@ int (*obtain_builtins(char *command))(data_container *);
 
 int close_shell(data_container *sh_data);
 
+int find_b_cmd(data_container *sh_data);
+
 #endif

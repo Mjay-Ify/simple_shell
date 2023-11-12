@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * obtain_builtins - Finds and returns the function pointer for a given built-in command.
+ * obtain_builtin - Finds and returns the function pointer for a given built-in command.
  * @command: the command string
  * Return: Function pointer to the corresponding built-in command.
  */
 
-int (*obtain_builtins(char *command))(data_container *)
+int (*obtain_builtin(char *command))(data_container *)
 {
 	a_builtin built_in[] = {
 		{ "env", _env },

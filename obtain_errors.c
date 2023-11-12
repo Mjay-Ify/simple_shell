@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * obtain_errors - To call the error according the builtin
+ * obtain_error - To call the error according the builtin
  * @data: the structure of the data that contains arg
  * @val: the error value
  * Return: the error
  */
-int obtain_errors(data_container *data, int val)
+int obtain_error(data_container *data, int val)
 {
 	char *err;
 

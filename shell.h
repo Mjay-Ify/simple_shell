@@ -83,13 +83,20 @@ void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data);
 void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert);
 char *replace_char(char *insert, int bool);
 
-int obtain_errors(data_container *data, int val);
+int obtain_error(data_container *data, int val);
 void assign_line(char **line_buff, size_t *a, char *buff, size_t b);
 ssize_t obtain_line(char **line_buff, size_t *i, FILE *str);
 char *read_input(int *n);
 void obtain_signal(int sig_val);
 int obtain_help(data_container *data);
-int (*obtain_builtins(char *command))(data_container *);
+int (*obtain_builtin(char *command))(data_container *);
+
+int is_current_dir(char *path, int *i);
+char *custom_which(char *command, char **environment_variable);
+int custom_is_executable(data_container *data);
+int verify_error_command(char *dir, data_container *data);
+int command_execute(data_container *data);
+
 
 int close_shell(data_container *data);
 

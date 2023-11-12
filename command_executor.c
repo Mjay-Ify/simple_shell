@@ -22,12 +22,12 @@ int is_current_dir(char *path, int *i)
 
 /**
  * custom_which - To locates a command
- * @command_name: command name
+ * @command: command name
  * @environment_variable: environment variable
  * Return: location of the command.
  */
 
-char *custom_which(char *command_name, char **environment_variable)
+char *custom_which(char *command, char **environment_variable)
 {
 	char *path, *ptr_path, *token_path, *dir;
 	int len_dir, len_cmd, i;
@@ -37,14 +37,14 @@ char *custom_which(char *command_name, char **environment_variable)
 	if (path)
 	{
 		ptr_path = custom_strdup(path);
-		len_cmd = custom_strlen(command_name);
+		len_cmd = custom_strlen(command);
 		token_path = custom_strtok(ptr_path, ":");
 		i = 0;
 		while (token_path != NULL)
 		{
 			if (is_current_dir(path, &i))
-				if (stat(command_name, &st) == 0)
-					return (command_name);
+				if (stat(command, &st) == 0)
+					return (command);
 			len_dir = custom_strlen(token_path);
 			dir = malloc(len_dir + len_cmd + 2);
 			custom_strcpy(dir, token_path);
@@ -60,13 +60,13 @@ char *custom_which(char *command_name, char **environment_variable)
 			token_path = custom_strtok(NULL, ":");
 		}
 		free(ptr_path);
-		if (stat(command_name, &st) == 0)
-			return (command_name);
+		if (stat(command, &st) == 0)
+			return (command);
 		return (NULL);
 	}
-	if (command_name[0] == '/')
-		if (stat(command_name, &st) == 0)
-			return (command_name);
+	if (command[0] == '/')
+		if (stat(command, &st) == 0)
+			return (command);
 	return (NULL);
 }
 

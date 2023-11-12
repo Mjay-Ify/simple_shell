@@ -1,28 +1,28 @@
 #include "shell.h"
 
 /**
- * close_shell - function that closes the shell
- * @shh_data: data
+ * close_shell -  Closes the shell and sets the exit status based on the provided argument
+ * @data: Pointer to the data_container structure containing shell data.
  * Return: 0
  */
-int close_shell(data_container *sh_data)
+int close_shell(data_container *data)
 {
 	unsigned int status;
 	int is_dig, len, b_num;
 
-	if (sh_data->args[1] != NULL)
+	if (data->args[1] != NULL)
 	{
-		status = _atoi(sh_data->args[1]);
-		is_dig = _isdigit(sh_data->args[1]);
-		len = _strlen(sh_data->args[1]);
+		status = custom_atoi(data->args[1]);
+		is_dig = is_number(data->args[1]);
+		len = custom_strlen(data->args[1]);
 		b_num = status > (unsigned int)INT_MAX;
 		if (!is_dig || len > 10 || b_num)
 		{
-			obtain_error(sh_data, 2);
-			sh_data->stat = 2;
+			obtain_error(data, 2);
+			data->status = 2;
 			return (1);
 		}
-		sh_data->stat = (status % 256);
+		data->status = (status % 256);
 	}
 	return (0);
 }

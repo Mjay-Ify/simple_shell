@@ -8,13 +8,13 @@
 
 void env_assist(void)
 {
-	char *assist =
+	char *help =
 	"assist: assist [-dms] [pattern ...]\n"
 	"\tDisplay information about builtin commands.\n"
 
 	"Displays brief summaries of builtin commands.\n";
 
-	write(STDOUT_FILENO, assist, _strlen(assist));
+	write(STDOUT_FILENO, help, _strlen(help));
 }
 
 /**
@@ -26,11 +26,11 @@ void env_assist(void)
 
 void env_assist_alias(void)
 {
-	char *assist =
+	char *help =
 	"alias: alias [-p] [name[=value]...]\n"
 	"\tDefine or display aliases.\n ";
 
-	write(STDOUT_FILENO, assist, _strlen(assist));
+	write(STDOUT_FILENO, help, _strlen(help));
 }
 
 /**
@@ -41,9 +41,9 @@ void env_assist_alias(void)
 
 void env_assist_cd(void)
 {
-	char *assist =
+	char *help =
 	"cd: cd [-L|[-P [-e]] [-@]] [dir]\n"
 	 "\tChange the shell working directory.\n ";
 
-	write(STDOUT_FILENO, assist, _strlen(assist));
+	write(STDOUT_FILENO, help, _strlen(help));
 }

@@ -8,11 +8,11 @@
  */
 void support_env_tasks(void)
 {
-	const char *support =
+	const char *help =
 	"env: env [option] [name=value] [command [args]]\n"
 	"\tDisplay the shell's environment.\n";
 
-	write(STDOUT_FILENO, support, _strlen(support));
+	write(STDOUT_FILENO, help, _strlen(help));
 
 }
 /**
@@ -22,11 +22,11 @@ void support_env_tasks(void)
 void env_variable_support(void)
 {
 
-	const char *support = "setenv: setenv (const char *name, const char *value,";
+	const char *help = "setenv: setenv (const char *name, const char *value,";
 	const char *description = "Add a new definition to the environment\n";
 
 
-	write(STDOUT_FILENO, support, _strlen(support));
+	write(STDOUT_FILENO, help, _strlen(help));
 	write(STDOUT_FILENO, description, _strlen(description));
 }
 /**
@@ -35,12 +35,12 @@ void env_variable_support(void)
  */
 void support_unsetenv_command(void)
 {
-	char *support =
+	char *help =
 	"unsetenv: unsetenv (const char *name)\n\t"
 	"\tUse this command to eliminate an environment entry completely.\n";
 
 
-	write(STDOUT_FILENO, support, _strlen(support));
+	write(STDOUT_FILENO, help, _strlen(help));
 }
 
 
@@ -50,7 +50,7 @@ void support_unsetenv_command(void)
  */
 void assist_general_command(void)
 {
-	const char *assist =
+	const char *help =
 	"^-^ bash, version 1.0(1)-release\n"
 	"The internal commands have been defined. Please use 'assist' to view the list.\n"
 	"If you'd like additional information about the 'name' function, simply type 'assist name.'.\n"
@@ -61,7 +61,7 @@ void assist_general_command(void)
 	"setenv: setenv [variable] [value]\n"
 	"unsetenv: unsetenv [variable]\n";
 
-	write(STDOUT_FILENO, help, _strlen(assist));
+	write(STDOUT_FILENO, help, _strlen(help));
 }
 /**
  * print_exit_help - Help provide information for exit command.

@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
- * assign_line - function to assign the line variable for obtain_line
+ * assign_line - Assign values to the line
+ * variable for obtain_line
  * @line_buff: Buffer that stores the input string
  * @buff: string called to line
  * @a: size of the line
@@ -29,16 +30,17 @@ void assign_line(char **line_buff, size_t *a, char *buff, size_t b)
 	}
 	else
 	{
-		_strcpy(*line_buff, buff);
+		custom_strcpy(*line_buff, buff);
 		free(buff);
 	}
 }
 /**
- * obtain_line - function to read inserted str
+ * obtain_line - Read a string from the input.
  * @line_buff: buffer that stores the input
  * @i: size of line_buff
  * @str: string to read from
- * Return: Amount of the  bytes
+ *
+ * Return: Amount of bytes to read.
  */
 ssize_t obtain_line(char **line_buff, size_t *i, FILE *str)
 {
@@ -71,7 +73,7 @@ ssize_t obtain_line(char **line_buff, size_t *i, FILE *str)
 			break;
 		}
 		if (insert >= BUFFERSIZE)
-			buff = _realloc(buff, insert, insert + 1);
+			buff = custom_realloc(buff, insert, insert + 1);
 		buff[insert] = a;
 		insert++;
 	}

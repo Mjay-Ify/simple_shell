@@ -2,7 +2,7 @@
 
 
 /**
- * count_digit - function to get the lenght of a number.
+ * count_digit - function to get the length of a number.
  * @n: type int number.
  * Return: Lenght of a number.
  */
@@ -30,7 +30,7 @@ int count_digit(int n)
  * @n: The integer to be converted
  * Return: A dynamically allocated string representing the integer.
  */
-char *intToStr(int n)
+char *aux_itoa(int n)
 {
 	int sign = (n < 0) ? -1 : 1;
 

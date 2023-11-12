@@ -15,8 +15,8 @@ char *system_environment_error(data_container *data)
 
 	ver = aux_itoa(data->counter);
 	message = ": Unable to add/remove from the environment\n";
-	len = _strlen(data->av[0]) + _strlen(ver);
-	len += _strlen(data->args[0]) + _strlen(message) + 4;
+	len = custom_strlen(data->av[0]) + custom_strlen(ver);
+	len += custom_strlen(data->args[0]) + custom_strlen(message) + 4;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == 0)
 	{
@@ -25,13 +25,13 @@ char *system_environment_error(data_container *data)
 		return (NULL);
 	}
 
-	_strcpy(err, data->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver);
-	_strcat(err, ": ");
-	_strcat(err, data->args[0]);
-	_strcat(err, message);
-	_strcat(err, "\0");
+	custom_strcpy(err, data->av[0]);
+	custom_strcat(err, ": ");
+	custom_strcat(err, ver);
+	custom_strcat(err, ": ");
+	custom_strcat(err, data->args[0]);
+	custom_strcat(err, message);
+	custom_strcat(err, "\0");
 	free(ver);
 
 	return (err);
@@ -50,19 +50,19 @@ char *route_126_error_alert(data_container *data)
 	char *ver, *err;
 
 	ver = aux_itoa(data->counter);
-	len = _strlen(data->av[0]) + _strlen(ver) + _strlen(data->args[0]) + 24;
+	len = custom_strlen(data->av[0]) + custom_strlen(ver) + custom_strlen(data->args[0]) + 24;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == NULL)
 	{
 		free(ver);
 		return (NULL);
 	}
-	_strcpy(err, data->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver);
-	_strcat(err, ": ");
-	_strcat(err, data->args[0]);
-	_strcat(err, ": access revoked\n");
+	custom_strcpy(err, data->av[0]);
+	custom_strcat(err, ": ");
+	custom_strcat(err, ver);
+	custom_strcat(err, ": ");
+	custom_strcat(err, data->args[0]);
+	custom_strcat(err, ": access revoked\n");
 
 	free(ver);
 	return (err);

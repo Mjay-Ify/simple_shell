@@ -27,6 +27,15 @@ void support_env_tasks(void);
 void assist_general_command(void);
 void print_exit_help(void);
 
+
+char *custom_strcat(char *custom_dest, const char *source);
+char *custom_strcpy(char *custom_dest, char *source);
+int custom_strcmp(char *str1, char *str2);
+char *custom_strchr(char *str, char c);
+int custom_strspn(char *str, char *receive);
+
+
+
 void env_assist_alias(void);
 void env_assist(void);
 void env_assist_cd(void);
@@ -48,7 +57,7 @@ char *custom_strdup(const char *str);
 
 
 int count_digit(int n);
-char *intToStr(int n);
+char *aux_itoa(int n);
 int custom_atoi(const char *str);
 
 
@@ -74,16 +83,16 @@ void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data);
 void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert);
 char *replace_char(char *insert, int bool);
 
-int obtain_errors(data_container *sh_data, int val);
+int obtain_errors(data_container *data, int val);
 void assign_line(char **line_buff, size_t *a, char *buff, size_t b);
 ssize_t obtain_line(char **line_buff, size_t *i, FILE *str);
 char *read_input(int *n);
 void obtain_signal(int sig_val);
-int obtain_help(data_container *sh_data);
+int obtain_help(data_container *data);
 int (*obtain_builtins(char *command))(data_container *);
 
-int close_shell(data_container *sh_data);
+int close_shell(data_container *data);
 
-int find_b_cmd(data_container *sh_data);
+int find_b_cmd(data_container *data);
 
 #endif

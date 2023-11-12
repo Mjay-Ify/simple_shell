@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * read_input - function to reads the inserted string.
- * @n: return value for getting the line function
- * Return: insert string
+ * read_input - Reads a line of input from the user.
+ * @n: Size of the buffer to store the input.
+ * Return: The input string read from the user.
  */
 char *read_input(int *n)
 {

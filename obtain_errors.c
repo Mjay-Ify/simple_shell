@@ -2,36 +2,36 @@
 
 /**
  * obtain_errors - To call the error according the builtin
- * @sh_data: the structure of the data that contains arg
+ * @data: the structure of the data that contains arg
  * @val: the error value
  * Return: the error
  */
-int obtain_errors(data_container *sh_data, int val)
+int obtain_errors(data_container *data, int val)
 {
 	char *err;
 
 	switch (val)
 	{
 	case -1:
-		err = error_env(sh_data);
+		err = system_environment_error(data);
 		break;
 	case 126:
-		err = error_path_126(sh_data);
+		err = route_126_error_alert(data);
 		break;
 	case 127:
-		err = error_not_found(sh_data);
+		err = missing_file_error(data);
 		break;
 	case 2:
-		if (_strcmp("exit", sh_data->args[0]) == 0)
-			err = err_exit_shell(sh_data);
-		else if (_strcmp("cd", sh_data->args[0]) == 0)
-			err = error_get_cd(sh_data);
+		if (custom_strcmp("exit", data->args[0]) == 0)
+			err = shell_terminate_error(data);
+		else if (custom_strcmp("cd", data->args[0]) == 0)
+			err = fetch_error_custom((data);
 		break;
 	}
 
 	if (err)
 	{
-		write(STDERR_FILENO, err, _strlen(err));
+		write(STDERR_FILENO, err, custom_strlen(err));
 		free(err);
 	}
 

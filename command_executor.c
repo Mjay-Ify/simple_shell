@@ -27,7 +27,7 @@ int is_current_dir(char *path, int *i)
  * Return: location of the command.
  */
 
-char *custom_which(char *command_name, char **environment_variables)
+char *custom_which(char *command_name, char **environment_variable)
 {
 	char *path, *ptr_path, *token_path, *dir;
 	int len_dir, len_cmd, i;
@@ -37,7 +37,7 @@ char *custom_which(char *command_name, char **environment_variables)
 	if (path)
 	{
 		ptr_path = custom_strdup(path);
-		len_cmd = custom_strlen(cmd);
+		len_cmd = custom_strlen(command_name);
 		token_path = custom_strtok(ptr_path, ":");
 		i = 0;
 		while (token_path != NULL)
@@ -71,7 +71,7 @@ char *custom_which(char *command_name, char **environment_variables)
 }
 
 /**
- * is_executable - To checks if is an executable
+ * custom_is_executable - To checks if is an executable
  * @data: data format
  * Return: 0 if is not an executable, other number if it does
  */
@@ -81,7 +81,7 @@ int custom_is_executable(data_container *data)
 	int i;
 	char *insert;
 
-	input = data->args[0];
+	insert = data->args[0];
 	for (i = 0; insert[i]; i++)
 	{
 		if (insert[i] == '.')

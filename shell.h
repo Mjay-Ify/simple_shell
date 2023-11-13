@@ -97,6 +97,10 @@ int custom_is_executable(data_container *data);
 int verify_error_command(char *dir, data_container *data);
 int command_execute(data_container *data);
 
+int del_envn(data_container *sh_data);
+int cmp_envn(data_container *sh_data);
+void put_envn(char *alias, char *val, data_container *sh_data);
+char *cpy_data(char *alias, char *val);
 
 int close_shell(data_container *data);
 

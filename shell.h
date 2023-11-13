@@ -97,6 +97,10 @@ int custom_is_executable(data_container *data);
 int verify_error_command(char *dir, data_container *data);
 int command_execute(data_container *data);
 
+int cmp_envn_alias(const char *n_env, const char *alias);
+int print_envn(data_container *sh_data);
+char *obtain_envn(const char *alias, char **envn);
+
 int del_envn(data_container *sh_data);
 int cmp_envn(data_container *sh_data);
 void put_envn(char *alias, char *val, data_container *sh_data);

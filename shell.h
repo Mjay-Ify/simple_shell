@@ -97,6 +97,20 @@ int custom_is_executable(data_container *data);
 int verify_error_command(char *dir, data_container *data);
 int command_execute(data_container *data);
 
+int cmp_envn_alias(const char *n_env, const char *alias);
+int print_envn(data_container *sh_data);
+char *obtain_envn(const char *alias, char **envn);
+
+int exe_command(data_container *sh_data);
+int verify_cmd_err(char *dirs, data_container *sh_data);
+int is_exec(data_container *sh_data);
+char *loc_cmd(char *n_cmd, char **envn);
+int _iscdire(char *way, int *n);
+
+int del_envn(data_container *sh_data);
+int cmp_envn(data_container *sh_data);
+void put_envn(char *alias, char *val, data_container *sh_data);
+char *cpy_data(char *alias, char *val);
 
 int close_shell(data_container *data);
 

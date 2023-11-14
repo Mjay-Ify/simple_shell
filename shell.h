@@ -57,7 +57,7 @@ char *custom_strdup(const char *str);
 
 
 int count_digit(int n);
-char *aux_itoa(int n);
+char *intToStr(int n);
 int custom_atoi(const char *str);
 
 

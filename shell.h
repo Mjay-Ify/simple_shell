@@ -118,5 +118,10 @@ int find_b_cmd(data_container *data);
 int obtain_line(data_container *data);
 
 void custom_rev_string(char *str) 
+int verify_syn_err(data_container *sh_data, char *insert);
+void print_syn_err(data_container *sh_data, char *insert, int n, int bool);
+int insert_char(char *insert, int *n);
+int err_sep_op(char *insert, int n, char final);
+int char_dup(char *insert, int n);
 
 #endif

@@ -124,4 +124,78 @@ int insert_char(char *insert, int *n);
 int err_sep_op(char *insert, int n, char final);
 int char_dup(char *insert, int n);
 
+extern char **environ;
+
+/**
+ * struct data - struct containing all relevant data on runtime
+ * @av: argument vector
+ * @input: command line entered by the user
+ * @args: tokens of the cosmmand line
+ * @status: last status of the shell
+ * @counter: counts line
+ * @_environ: environment variable
+ * @pid: process ID of the shell
+ */
+typedef struct data
+{
+	char **argv;
+	char *insert;
+	char **args;
+	int stat;
+	int count;
+	char **envn;
+	char *pid;
+} data_container;
+
+/**
+ * struct sep_list_s - single linked list
+ * @separator: ; | &
+ * @next: next node
+ * Description: single linked list to store separators
+ */
+typedef struct separator_list_s
+{
+	char sep;
+	struct separator_list_s *next;
+} separator_list;
+
+/**
+ * struct line_list_s - single linked list
+ * @line: command line
+ * @next: next node
+ * Description: single linked list to store command lines
+ */
+typedef struct c_line_list_s
+{
+	char *line;
+	struct c_line_list_s *next;
+} c_line_list;
+
+/**
+ * struct r_var_list - single linked list
+ * @len_var: length of the variable
+ * @val: value of the variable
+ * @len_val: length of the value
+ * @next: next node
+ * Description: single linked list to store variables
+ */
+typedef struct r_var_list
+{
+	int len_var;
+	char *val;
+	int len_val;
+	struct r_var_list *next;
+} r_var;
+
+/**
+ * struct builtin_s - Builtin struct for command args.
+ * @name: The name of the command builtin i.e cd, env, etc
+ * @f: data type pointer function.
+ */
+typedef struct builtin_s
+{
+	char *alias;
+	int (*f)(data_container *datash);
+} builtin_t;
+
 #endif

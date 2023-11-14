@@ -50,7 +50,7 @@ void looping_sh(data_container *data);
 
 int is_number(const char *str);
 char *custom_strtok(char input_str[], const char *delimiter);
-int hasDelimiter(char s[], const char *delimiter);
+int char_cmp(char s[], const char *delimiter);
 int custom_strlen(const char *str);
 char *custom_strdup(const char *str);
 

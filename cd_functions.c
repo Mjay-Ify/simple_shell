@@ -1,4 +1,4 @@
-#include "shell#.h"
+#include "shell.h"
 
 /**
  *cd_dot_get - to changes to the parent directory
@@ -47,7 +47,7 @@ void cd_dot_get(data_container *data)
 		chdir("/");
 		custom_set_env("PWD", "/", data);
 	}
-	data->status = 0;
+	data->stat = 0;
 	free(copy_current_path);
 }
 
@@ -65,8 +65,6 @@ void cd_to_get(data_container *data)
 	char *target_dir, *copy_current_path, *copy_target_dir;
 
 	getcwd(current_path, sizeof(current_path));
-	copy_current_path = custom_strdup(current_path);
-	custom_set_env("OLDPWD", copy_current_path, data);
 
 	target_dir = data->args[1];
 	if (chdir(target_dir) == -1)
@@ -74,6 +72,9 @@ void cd_to_get(data_container *data)
 		obtain_error(data, 2);
 		return;
 	}
+
+	copy_current_path = custom_strdup(current_path);
+	custom_set_env("OLDPWD", copy_current_path, data);
 
 	copy_target_dir = custom_strdup(target_dir);
 	custom_set_env("PWD", copy_target_dir, data);
@@ -113,7 +114,7 @@ void cd_previous_get(data_container *data)
 	else
 		custom_set_env("PWD", copy_old_pwd, data);
 
-	previous_pwd = custom_getenv("PWD", data->_environment_variable);
+	previous_pwd = custom_getenv("PWD", data->envn);
 
 	write(STDOUT_FILENO, previous_pwd, custom_strlen(previous_pwd));
 	write(STDOUT_FILENO, "\n", 1);
@@ -140,7 +141,7 @@ void cd_to_home_get(data_container *data)
 	getcwd(current_path, sizeof(current_path));
 	previous_pwd = custom_strdup(current_path);
 
-	home_directory = custom_getenv("HOME", data->_environment_variable);
+	home_directory = custom_getenv("HOME", data->envn);
 
 	if (home_directory == NULL)
 	{
@@ -158,6 +159,6 @@ void cd_to_home_get(data_container *data)
 	custom_set_env("OLDPWD", previous_pwd, data);
 	custom_set_env("PWD", home_directory, data);
 	free(previous_pwd);
-	data->status = 0;
+	data->stat = 0;
 
 }

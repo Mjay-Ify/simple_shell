@@ -36,7 +36,7 @@ int custom_strlen(const char *str)
 }
 
 /**
- * hasDelimiter - compare chars of strings
+ * char_cmp - compare chars of strings
  * @s: input string.
  * @delimiter: delimiter.
  *
@@ -60,7 +60,7 @@ int char_cmp(char s[], const char *delimiter)
 	}
 	if (i == k)
 		return (1);
-	
+
 	return (0);
 }
 

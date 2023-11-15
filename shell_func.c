@@ -5,7 +5,7 @@
  * @data: data relevant
  * Return: on success 1
 */
-int change_directory_command(data_shell *data)
+int change_directory_command(data_container *data)
 {
 	char *directory;
 	int is_home, is_home2, is_double_dash;

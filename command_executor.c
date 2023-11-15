@@ -163,12 +163,12 @@ int command_execute(data_container *data)
 	char *dir;
 	(void) wpd;
 
-	execute = _custom_is_executable(data);
+	execute = custom_is_executable(data);
 	if (execute == -1)
 		return (1);
 	if (execute == 0)
 	{
-		dir = custom_which(data->args[0], data->environment_variable);
+		dir = custom_which(data->args[0], data->envn);
 		if (verify_error_command(dir, data) == 1)
 			return (1);
 	}
@@ -177,10 +177,10 @@ int command_execute(data_container *data)
 	if (pd == 0)
 	{
 		if (execute == 0)
-			dir = custom_which(data->args[0], data->environment_variable);
+			dir = custom_which(data->args[0], data->envn);
 		else
 			dir = data->args[0];
-		execve(dir + execute, data->args, data->environment_variable);
+		execve(dir + execute, data->args, data->envn);
 	}
 	else if (pd < 0)
 	{
@@ -194,6 +194,6 @@ int command_execute(data_container *data)
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 
-	data->status = state / 256;
+	data->stat = state / 256;
 	return (1);
 }

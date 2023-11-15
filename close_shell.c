@@ -19,10 +19,10 @@ int close_shell(data_container *data)
 		if (!is_dig || len > 10 || b_num)
 		{
 			obtain_error(data, 2);
-			data->status = 2;
+			data->stat = 2;
 			return (1);
 		}
-		data->status = (status % 256);
+		data->stat = (status % 256);
 	}
 	return (0);
 }

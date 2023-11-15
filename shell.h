@@ -114,7 +114,7 @@ void env_assist_alias(void);
 void env_assist(void);
 void env_assist_cd(void);
 
-line_list *append_line_to_end(c_line_list **list, char *line);
+c_line_list *append_line_to_end(c_line_list **list, char *line);
 void deallocate_sep_list(separator_list **list);
 sep_list *append_sep_to_end(separator_list **list, char seperator);
 void free_line_list(c_line_list **list);

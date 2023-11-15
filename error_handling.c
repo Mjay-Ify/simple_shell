@@ -63,7 +63,7 @@ char *fetch_error_custom(data_container *data)
 	len = custom_strlen(data->argv[0]) + custom_strlen(data->args[0])
 	len += custom_strlen(ver) + custom_strlen(message) + id + 5;
 	err = malloc(sizeof(char) * (len + 1));
-	
+
 	if (err == 0)
 	{
 		free(ver);

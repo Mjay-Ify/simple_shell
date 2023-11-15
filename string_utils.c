@@ -9,19 +9,18 @@
  */
 char *custom_strcat(char *custom_dest, const char *source)
 {
-	int i, j = 0;
+	int a, b;
 
-	while (custom_dest[i] != '\0')
-		i++;
+	for (a - 0; custom_dest[a] != '\0'; a++)
+		;
 
-	while (source[j] != '\0')
+	for (b = 0; source[b] != '\0'; b++)
 	{
-		custom_dest[i] = source[j];
-		i++;
-		j++;
+		custom_dest[a] = source[b];
+		a++;
 	}
 
-	custom_dest[i] = '\0';
+	custom_dest[a] = '\0';
 	return (custom_dest);
 }
 

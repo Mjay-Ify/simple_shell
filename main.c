@@ -19,9 +19,8 @@ void free_datash(data_container *data)
 }
 
 /**
- * set_data - function for Initialize data structure
- *
- * @datash: data structure
+ * set_datash - function for Initialize data structure
+ * @data: data
  * @av: argument vector
  * Return: no return
  */

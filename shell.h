@@ -128,12 +128,12 @@ extern char **environ;
 
 /**
  * struct data - struct containing all relevant data on runtime
- * @av: argument vector
- * @input: command line entered by the user
+ * @argv: argument vector
+ * @insert: command line entered by the user
  * @args: tokens of the cosmmand line
- * @status: last status of the shell
- * @counter: counts line
- * @_environ: environment variable
+ * @stat: last status of the shell
+ * @count: counts line
+ * @envn: environment variable
  * @pid: process ID of the shell
  */
 typedef struct data
@@ -148,8 +148,8 @@ typedef struct data
 } data_container;
 
 /**
- * struct sep_list_s - single linked list
- * @separator: ; | &
+ * struct separator_list_s - single linked list
+ * @sep: ; | &
  * @next: next node
  * Description: single linked list to store separators
  */
@@ -160,7 +160,7 @@ typedef struct separator_list_s
 } separator_list;
 
 /**
- * struct line_list_s - single linked list
+ * c_struct line_list_s - single linked list
  * @line: command line
  * @next: next node
  * Description: single linked list to store command lines
@@ -182,8 +182,8 @@ typedef struct c_line_list_s
 typedef struct r_var_list
 {
 	int len_var;
-	char *val;
-	int len_val;
+	char *value;
+	int len_value;
 	struct r_var_list *next;
 } r_var;
 
@@ -196,6 +196,6 @@ typedef struct builtin_s
 {
 	char *alias;
 	int (*f)(data_container *datash);
-} builtin_t;
+} builtin;
 
 #endif

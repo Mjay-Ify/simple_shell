@@ -49,7 +49,7 @@ char *replace_char(char *insert, int bool)
  * @line_head: The head of the command lines list.
  * @insert: string to be inserted, which may contain sep or command lines.
  */
-void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert)
+void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert)
 {
 	int n;
 	char *c_line;
@@ -68,11 +68,11 @@ void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert)
 		}
 	}
 
-	c_line = _strtok(insert, ";|&");
+	c_line = custom_strtok(insert, ";|&");
 	do {
 		c_line = replace_char(c_line, 1);
 		append_line_to_end((line_head, c_line);
-		c_line = _strtok(NULL, ";|&");
+		c_line = custom_strtok(NULL, ";|&");
 	} while (c_line != NULL);
 }
 
@@ -82,7 +82,7 @@ void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert)
  * @l_list: The list of command line.
  * @data: data format
  */
-void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data)
+void next_line(separator_list **sep_list, c_line_list **l_list, data_container *data)
 {
 	int s_loop;
 	separator_list *sep_ls;
@@ -94,7 +94,7 @@ void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data)
 
 	while (sep_ls != NULL && s_loop)
 	{
-		if (data->status == 0)
+		if (data->stat == 0)
 		{
 			if (sep_ls->sep == '&' || sep_ls->sep == ';')
 				s_loop = 0;
@@ -132,7 +132,7 @@ int crack_cmd(data_container *data, char *insert)
 	sep_head = NULL;
 	line_head = NULL;
 
-	add_separator(&sep_head, &line_head, insert);
+	add_sep(&sep_head, &line_head, insert);
 
 	sep_list = sep_head;
 	line_list = line_head;
@@ -141,7 +141,7 @@ int crack_cmd(data_container *data, char *insert)
 	{
 		data->insert = line_list->line;
 		data->args = split_line(data->insert);
-		sl_loop = exec_line(data);
+		sl_loop = exe_command(data);
 		free(data->args);
 
 		if (sl_loop == 0)
@@ -153,7 +153,7 @@ int crack_cmd(data_container *data, char *insert)
 			line_list = line_list->nxt;
 	}
 
-	free_sep_list(&sep_head);
+	deallocate_sep_list(&sep_head);
 	free_line_list(&line_head);
 
 	if (sl_loop == 0)
@@ -181,7 +181,7 @@ char **crack_line(char *insert)
 		exit(EXIT_FAILURE);
 	}
 
-	tok = _strtok(insert, TOKEN_SEP);
+	tok = custom_strtok(insert, TOKEN_SEP);
 	tok[0] = tok;
 
 	for (n = 1; tok != NULL; n++)
@@ -189,14 +189,14 @@ char **crack_line(char *insert)
 		if (n == bt_size)
 		{
 			bt_size += TOKEN_BUFFERSIZE;
-			toks = _reallocdp(toks, n, sizeof(char *) * bt_size);
+			toks = resizedp(toks, n, sizeof(char *) * bt_size);
 			if (toks == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);
 				exit(EXIT_FAILURE);
 			}
 		}
-		tok = _strtok(NULL, TOKEN_SEP);
+		tok = custom_strtok(NULL, TOKEN_SEP);
 		toks[i] = tok;
 	}
 

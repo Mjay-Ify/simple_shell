@@ -57,13 +57,13 @@ int print_envn(data_container *sh_data)
 {
 	int a, b;
 
-	for (a = 0; sh_data->_environ[a]; a++)
+	for (a = 0; sh_data->envn[a]; a++)
 	{
 
-		for (b = 0; sh_data->_environ[a][b]; b++)
+		for (b = 0; sh_data->envn[a][b]; b++)
 			;
 
-		write(STDOUT_FILENO, sh_data->_environ[a], b);
+		write(STDOUT_FILENO, sh_data->envn[a], b);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	sh_data->stat = 0;

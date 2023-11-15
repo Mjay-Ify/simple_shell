@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * obtain_line - function to finds builtins and commands
+ * execute_line - function to finds builtins and commands
  *
  * @data: data relevant (args)
  * Return: 1 on success.

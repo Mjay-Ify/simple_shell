@@ -29,7 +29,7 @@ void cd_dot_get(data_container *data)
 	}
 	tokenized_path = copy_current_path;
 	custom_rev_string(tokenized_path);
-	tokenized_path = _strtok(tokenized_path, "/");
+	tokenized_path = custom_strtok(tokenized_path, "/");
 	if (tokenized_path != NULL)
 	{
 		tokenized_path = custom_strtok(NULL, "\0");
@@ -81,7 +81,7 @@ void cd_to_get(data_container *data)
 	free(copy_current_path);
 	free(copy_target_dir);
 
-	data->status = 0;
+	data->stat = 0;
 	chdir(target_dir);
 }
 
@@ -98,7 +98,6 @@ void cd_previous_get(data_container *data)
 
 	getcwd(current_path, sizeof(current_path));
 	copy_current_path = custom_strdup(current_path);
-	custom_set_env("OLDPWD", copy_current_path, data);
 
 	old_pwd = custom_getenv("OLDPWD", data->_environment_variable);
 
@@ -123,7 +122,7 @@ void cd_previous_get(data_container *data)
 	if (old_pwd)
 		free(copy_old_pwd);
 
-	data->status = 0;
+	data->stat = 0;
 	chdir(previous_pwd);
 }
 

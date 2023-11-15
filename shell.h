@@ -189,7 +189,7 @@ char *cpy_data(char *alias, char *val);
 int close_shell(data_container *data);
 
 int find_b_cmd(data_container *data);
-int obtain_line(data_container *data);
+int execute_line(data_container *data);
 
 void custom_rev_string(char *str) 
 int verify_syn_err(data_container *sh_data, char *insert);

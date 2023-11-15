@@ -8,20 +8,21 @@
  * Return: pointer to the updated list
  */
 
-sep_list *append_sep_to_end(sep_list **list, char seperator)
+separator_list *append_sep_to_end(separator_list **list, char seperator)
 {
-	sep_list *new_node = malloc(sizeof(sep_list));
+	separator_list *new_node, *temp;
+
+	new_node= malloc(sizeof(separator_list));
 	if (new == NULL)
 		return (NULL);
 
-	new_node->separator = separator;
+	new_node->sep = separator;
 	new_node->next = NULL;
-
+	temp = *list
 	if (list == NULL)
 		*list = new_node;
 	else
 	{
-		sep_list *temp - *list;
 		while (temp->next != NULL)
 			temp = temp->next;
 		temp->next = new;
@@ -35,18 +36,21 @@ sep_list *append_sep_to_end(sep_list **list, char seperator)
  * @list: pointer to the linked list head.
  */
 
-void deallocate_sep_list(sep_list **list)
+void deallocate_sep_list(separator_list **list)
 {
-	sep_list *current = *list;
-	sep_list *next;
+	separator_list *current;
+	separator_list *tmp;
 
-	while (current != NULL)
+	if (list != NULL)
 	{
-		next = *current->next;
-		free(current);
-		*cuurent= next;
-	}
+		current = *list;
+		while ((tmp = current) != NULL)
+		{
+			next = *current->next;
+			free(current);
+		}
 	*list = NULL; /*set the head to null after freeing all nodes, */
+	}
 }
 
 /**
@@ -56,11 +60,11 @@ void deallocate_sep_list(sep_list **list)
  * Return: The head address
  */
 
-line_list *append_line_to_end(line_list **list, char *line)
+c_line_list *append_line_to_end(c_line_list **list, char *line)
 {
-	line_list *new_node, *temp;
+	c_line_list *new_node, *temp;
 
-	new_node = malloc(sizeof(line_list));
+	new_node = malloc(sizeof(c_line_list));
 	if (new_node == NULL)
 		return (NULL);
 
@@ -85,10 +89,10 @@ line_list *append_line_to_end(line_list **list, char *line)
  * @list: linked list
  * Return: void
  */
-void free_line_list(line_list **list)
+void free_line_list(c_line_list **list)
 {
-	line_list *temp;
-	line_list *current;
+	c_line_list *temp;
+	c_line_list *current;
 
 	if (list != NULL)
 	{

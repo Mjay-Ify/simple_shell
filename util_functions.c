@@ -8,12 +8,12 @@
  */
 void support_env_tasks(void)
 {
-	const char *help =
-	"env: env [option] [name=value] [command [args]]\n"
-	"\tDisplay the shell's environment.\n";
+	const char *help = "env: env [option] [name=value] [command [args]]\n";
 
-	write(STDOUT_FILENO, help, _strlen(help));
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "\tDisplay the shell's environment.\n";
 
+	write(STDOUT_FILENO, help, custom_strlen(help));
 }
 /**
  * env_variable_support - Display assist for the 'setenv' function.
@@ -22,12 +22,13 @@ void support_env_tasks(void)
 void env_variable_support(void)
 {
 
-	const char *help = "setenv: setenv (const char *name, const char *value,";
-	const char *description = "Add a new definition to the environment\n";
+	char *help = "setenv: setenv (const char *name, const char *value,";
 
-
-	write(STDOUT_FILENO, help, _strlen(help));
-	write(STDOUT_FILENO, description, _strlen(description));
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "int replace)\n\t";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "Add a new definition to the environment\n";
+	write(STDOUT_FILENO, help, custom_strlen(help));
 }
 /**
  * support_unsetenv_command - function to informats for the builtin unsetenv
@@ -35,12 +36,11 @@ void env_variable_support(void)
  */
 void support_unsetenv_command(void)
 {
-	char *help =
-	"unsetenv: unsetenv (const char *name)\n\t"
-	"\tUse this command to eliminate an environment entry completely.\n";
+	char *help = "unsetenv: unsetenv (const char *name)\n\t";
 
-
-	write(STDOUT_FILENO, help, _strlen(help));
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "Remove an entry completely from the environment\n";
+	write(STDOUT_FILENO, help, custom_strlen(help));
 }
 
 
@@ -50,18 +50,21 @@ void support_unsetenv_command(void)
  */
 void assist_general_command(void)
 {
-	const char *help =
-	"^-^ bash, version 1.0(1)-release\n"
-	"The internal commands have been defined. Please use 'assist' to view the list.\n"
-	"If you'd like additional information about the 'name' function, simply type 'assist name.'.\n"
-	"alias: alias [name=['string']]\n"
-	"cd: cd [-L|[-P [-e]] [-@]] [dir]\n"
-	"exit: exit [n]\n"
-	"env: env [option] [name=value] [command args]\n"
-	"setenv: setenv [variable] [value]\n"
-	"unsetenv: unsetenv [variable]\n";
+	char *help = "^-^ bash, version 1.0(1)-release\n";
 
-	write(STDOUT_FILENO, help, _strlen(help));
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "These commands are defined internally.Type 'help' to see the list";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "Type 'help name' to find out more about the function 'name'.\n\n ";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = " alias: alias [name=['string']]\n cd: cd [-L|[-P [-e]] [-@]] ";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "[dir]\nexit: exit [n]\n  env: env [option] [name=value] [command ";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "[args]]\n  setenv: setenv [variable] [value]\n  unsetenv: ";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "unsetenv [variable]\n";
+	write(STDOUT_FILENO, help, custom_strlen(help));
 }
 /**
  * print_exit_help - Help provide information for exit command.
@@ -70,10 +73,11 @@ void assist_general_command(void)
  */
 void print_exit_help(void)
 {
-	const char *help =
-	"exit: exit [n]\n Exit shell.\n"
-	"Exits the shell with a status of N. If N is omitted,
-	"the exit status is that of the last command executed.\n ";
+	char *help = "exit: exit [n]\n Exit shell.\n";
 
-	write(STDOUT_FILENO, help, _strlen(help));
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "Exits the shell with a status of N. If N is ommited, the exit";
+	write(STDOUT_FILENO, help, custom_strlen(help));
+	help = "statusis that of the last command executed\n";
+	write(STDOUT_FILENO, help, custom_strlen(help));
 }

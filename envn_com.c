@@ -2,7 +2,7 @@
 
 /**
  * cpy_data - to copy the info to be create a new environment
- * @alias: name 
+ * @alias: name or alias
  * @val: value
  * Return: new alias
  */
@@ -74,7 +74,7 @@ int cmp_envn(data_container *sh_data)
 
 /**
  * del_envn - to deletes a environment variable
- * @datash: data relevant (env name)
+ * @sh_data: data relevant (env name)
  * Return: on success 1
  */
 int del_envn(data_container *sh_data)

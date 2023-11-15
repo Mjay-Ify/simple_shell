@@ -140,8 +140,8 @@ int crack_cmd(data_container *data, char *insert)
 	while (line_list != NULL)
 	{
 		data->insert = line_list->line;
-		data->args = split_line(data->insert);
-		sl_loop = exe_command(data);
+		data->args = crack_line(data->insert);
+		sl_loop = obtain_line(data);
 		free(data->args);
 
 		if (sl_loop == 0)

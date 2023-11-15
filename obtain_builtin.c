@@ -8,7 +8,7 @@
 
 int (*obtain_builtin(char *command))(data_container *)
 {
-	a_builtin built_in[] = {
+	builtin built_in[] = {
 		{ "env", _env },
 		{ "exit", exit_sh },
 		{ "setenv", _setenv },
@@ -21,7 +21,7 @@ int (*obtain_builtin(char *command))(data_container *)
 
 	for (n = 0; built_in[n].name; n++)
 	{
-		if (custom_strcmp(built_in[n].name, command) == 0)
+		if (custom_strcmp(built_in[n].alias, command) == 0)
 			break;
 	}
 

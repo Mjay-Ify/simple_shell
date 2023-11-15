@@ -65,7 +65,7 @@ char *intToStr(int n)
 	}
 	while (i > 0)
 		;
-	return (buff;
+	return (buff);
 }
 
 /**

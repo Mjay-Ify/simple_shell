@@ -12,7 +12,7 @@ separator_list *append_sep_to_end(separator_list **list, char seperator)
 {
 	separator_list *new_node, *temp;
 
-	new_node= malloc(sizeof(separator_list));
+	new_node = malloc(sizeof(separator_list));
 	if (new == NULL)
 		return (NULL);
 
@@ -55,7 +55,7 @@ void deallocate_sep_list(separator_list **list)
 
 /**
  * append_line_to_end - function to adds command line
- * @head: linked list head
+ * @list: head of linked list
  * @line: command line
  * Return: The head address
  */

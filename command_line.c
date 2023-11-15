@@ -13,10 +13,10 @@ int obtain_line(data_container *data)
 	if (data->args[0] == NULL)
 		return (1);
 
-	builtin = obtain_builtins(data->args[0]);
+	builtin = obtain_builtin(data->args[0]);
 
 	if (builtin != NULL)
 		return (builtin(data));
 
-	return (command_obtain(data));
+	return (exe_command(data));
 }

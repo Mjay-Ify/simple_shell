@@ -50,7 +50,8 @@ char *route_126_error_alert(data_container *data)
 	char *ver, *err;
 
 	ver = aux_itoa(data->counter);
-	len = custom_strlen(data->av[0]) + custom_strlen(ver) + custom_strlen(data->args[0]) + 24;
+	len = custom_strlen(data->av[0]) + custom_strlen(ver)
+		+ custom_strlen(data->args[0]) + 24;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == NULL)
 	{

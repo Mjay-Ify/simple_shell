@@ -17,5 +17,5 @@ int find_b_cmd(data_container *data)
 	if (built_in != NULL)
 		return (built_in(data));
 
-	return (cmd_exec(data));
+	return (command_execute(data));
 }

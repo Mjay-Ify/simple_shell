@@ -184,7 +184,7 @@ int command_execute(data_container *data)
 	}
 	else if (pd < 0)
 	{
-		perror(data->av[0]);
+		perror(data->argv[0]);
 		return (1);
 	}
 	else

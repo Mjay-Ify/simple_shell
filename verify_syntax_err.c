@@ -74,7 +74,7 @@ int err_sep_op(char *insert, int n, char final)
  * Return: -1 if there is error. 0 otherwise
  */
 
-int insert_char(char *insert, int *n)
+int initial_char(char *insert, int *n)
 {
 
 	for (*n = 0; insert[*n]; *n += 1)
@@ -145,7 +145,7 @@ void print_syn_err(data_container *sh_data, char *insert, int n, int bool)
 
 /**
  * verify_syn_err - to find and print a syntax error
- * @datash: data
+ * @sh_data: data
  * @insert: inserted string
  * Return: 1 if there is error. 0 otherwise
  */

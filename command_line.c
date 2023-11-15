@@ -6,7 +6,7 @@
  * @data: data relevant (args)
  * Return: 1 on success.
  */
-int obtain_line(data_container *data)
+int execute_line(data_container *data)
 {
 	int (*builtin)(data_container *datash);
 

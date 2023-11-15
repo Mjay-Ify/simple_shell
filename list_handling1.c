@@ -27,7 +27,7 @@ r_var *append_to_rva(r_var **list, int lvar, char *value, int lval)
 		free(new_node);
 		return (NULL);
 	}
-	memcpy(new_node->value, value, lval);
+	custom_memcpy(new_node->value, value, lval);
 
 	new_node->next = NULL;
 

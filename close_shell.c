@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * close_shell -  Closes the shell and sets the exit status based on the provided argument
- * @data: Pointer to the data_container structure containing shell data.
+ * close_shell -  Closes the shell based on the provided argument
+ * @data: Pointer to the data structure containing shell data.
  * Return: 0
  */
 int close_shell(data_container *data)

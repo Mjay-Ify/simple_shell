@@ -78,7 +78,7 @@ ssize_t obtain_line(char **line_buff, size_t *i, FILE *str)
 		insert++;
 	}
 	buff[insert] = '\0';
-	bring_line(line_buff, i, buff, insert);
+	assign_line(line_buff, i, buff, insert);
 	value = insert;
 	if (j != 0)
 		insert = 0;

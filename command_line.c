@@ -18,5 +18,5 @@ int obtain_line(data_container *data)
 	if (builtin != NULL)
 		return (builtin(data));
 
-	return (exe_command(data));
+	return (command_execute(data));
 }

@@ -152,7 +152,7 @@ int verify_cmd_err(char *dirs, data_container *sh_data)
 
 /**
  * exe_command - function to execute command lines
- * @datash: data
+ * @sh_data: data
  * Return: 1 on success
  */
 int exe_command(data_container *sh_data)

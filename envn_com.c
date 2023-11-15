@@ -11,14 +11,14 @@ char *cpy_data(char *alias, char *val)
 	char *n;
 	int len_alias, len_val, length;
 
-	len_alias = _strlen(alias);
-	len_val = _strlen(val);
+	len_alias = custom_strlen(alias);
+	len_val = custom_strlen(val);
 	length = len_alias + len_val + 2;
 	n = malloc(sizeof(char) * (length));
-	_strcpy(n, alias);
-	_strcat(n, "=");
-	_strcat(n, val);
-	_strcat(n, "\0");
+	custom_strcpy(n, alias);
+	custom_strcat(n, "=");
+	custom_strcat(n, val);
+	custom_strcat(n, "\0");
 
 	return (n);
 }
@@ -34,23 +34,23 @@ void put_envn(char *alias, char *val, data_container *sh_data)
 	int n;
 	char *envn_var, *envn_alias;
 
-	for (i = 0; sh_data->_environ[n]; n++)
+	for (i = 0; sh_data->envn[n]; n++)
 	{
-		envn_var = _strdup(sh_data->_environ[n]);
-		envn_alias = _strtok(envn_var, "=");
-		if (_strcmp(envn_alias, alias) == 0)
+		envn_var = custom_strdup(sh_data->envn[n]);
+		envn_alias = custom_strtok(envn_var, "=");
+		if (custom_strcmp(envn_alias, alias) == 0)
 		{
-			free(sh_datash->_environ[n]);
-			sh_data->_environ[n] = cpy_data(envn_alias, val);
+			free(sh_datash->envn[n]);
+			sh_data->envn[n] = cpy_data(envn_alias, val);
 			free(envn_var);
 			return;
 		}
 		free(envn_var);
 	}
 
-	sh_data->_environ = _reallocdp(sh_data->_environ, n, sizeof(char *) * (n + 2));
-	sh_data->_environ[n] = cpy_data(alias, val);
-	sh_data->_environ[n + 1] = NULL;
+	sh_data->envn = resizedp(sh_data->envn, n, sizeof(char *) * (n + 2));
+	sh_data->envn[n] = cpy_data(alias, val);
+	sh_data->envn[n + 1] = NULL;
 }
 
 /**
@@ -63,7 +63,7 @@ int cmp_envn(data_container *sh_data)
 
 	if (sh_data->args[1] == NULL || sh_data->args[2] == NULL)
 	{
-		get_error(sh_data, -1);
+		obtain_error(sh_data, -1);
 		return (1);
 	}
 
@@ -89,11 +89,11 @@ int del_envn(data_container *sh_data)
 		return (1);
 	}
 	n = -1;
-	for (a = 0; sh_data->_environ[a]; a++)
+	for (a = 0; sh_data->envn[a]; a++)
 	{
-		envn_var = _strdup(sh_data->_environ[a]);
-		envn_alias = _strtok(envn_var, "=");
-		if (_strcmp(name_env, sh_data->args[1]) == 0)
+		envn_var = custom_strdup(sh_data->envn[a]);
+		envn_alias = custom_strtok(envn_var, "=");
+		if (custom_strcmp(name_env, sh_data->args[1]) == 0)
 		{
 			n = a;
 		}
@@ -105,17 +105,17 @@ int del_envn(data_container *sh_data)
 		return (1);
 	}
 	realloc_envn = malloc(sizeof(char *) * (a));
-	for (a = b = 0; sh_data->_environ[a]; a++)
+	for (a = b = 0; sh_data->envn[a]; a++)
 	{
 		if (a != n)
 		{
-			realloc_envn[b] = sh_data->_environ[a];
+			realloc_envn[b] = sh_data->envn[a];
 			b++;
 		}
 	}
 	realloc_envn[b] = NULL;
-	free(sh_data->_environ[n]);
-	free(sh_data->_environ);
-	sh_data->_environ = realloc_envn;
+	free(sh_data->envn[n]);
+	free(sh_data->envn);
+	sh_data->envn = realloc_envn;
 	return (1);
 }

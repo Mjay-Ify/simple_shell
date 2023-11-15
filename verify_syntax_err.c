@@ -120,9 +120,9 @@ void print_syn_err(data_container *sh_data, char *insert, int n, int bool)
 
 	msg_2 = ": Syntax error: \"";
 	msg_3 = "\" unexpected\n";
-	count = aux_itoa(sh_data->counter);
-	len = _strlen(sh_data->av[0]) + _strlen(count);
-	len += _strlen(msg_1) + _strlen(msg_2) + _strlen(msg_3) + 2;
+	count = intToStr(sh_data->count);
+	len = custom_strlen(sh_data->argv[0]) + custom_strlen(count);
+	len += custom_strlen(msg_1) + custom_strlen(msg_2) + custom_strlen(msg_3) + 2;
 
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == 0)
@@ -130,13 +130,13 @@ void print_syn_err(data_container *sh_data, char *insert, int n, int bool)
 		free(count);
 		return;
 	}
-	_strcpy(err, sh_data->av[0]);
-	_strcat(err, ": ");
-	_strcat(err, count);
-	_strcat(err, msg_2);
-	_strcat(err, msg_1);
-	_strcat(err, msg_3);
-	_strcat(err, "\0");
+	custom_strcpy(err, sh_data->av[0]);
+	custom_strcat(err, ": ");
+	custom_strcat(err, count);
+	custom_strcat(err, msg_2);
+	custom_strcat(err, msg_1);
+	custom_strcat(err, msg_3);
+	custom_strcat(err, "\0");
 
 	write(STDERR_FILENO, err, len);
 	free(err);

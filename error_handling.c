@@ -14,12 +14,12 @@ char *strcat_custom(data_container *data, char *message, char *err, char *ver)
 {
 	char *error_flag;
 
-	_strcpy(err, data->argv[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver);
-	_strcat(err, ": ");
-	_strcat(err, data->args[0]);
-	_strcat(err, message);
+	custom_strcpy(err, data->argv[0]);
+	custom_strcat(err, ": ");
+	custom_strcat(err, ver);
+	custom_strcat(err, ": ");
+	custom_strcat(err, data->args[0]);
+	custom_strcat(err, message);
 
 	if (data->args[1][0] == '-')
 	{
@@ -28,13 +28,13 @@ char *strcat_custom(data_container *data, char *message, char *err, char *ver)
 		error_flag[1] = data->args[1][1];
 		error_flag[2] = '\0';
 	}
-	_strcat(err, error_flag);
+	custom_strcat(err, error_flag);
 	free(error_flag);
 	else
-		_strcat(err, data->args[1]);
+		custom_strcat(err, data->args[1]);
 
-	_strcat(err, "\n");
-	_strcat(err, "\0");
+	custom_strcat(err, "\n");
+	custom_strcat(err, "\0");
 	return (err);
 }
 
@@ -48,7 +48,7 @@ char *fetch_error_custom(data_container *data)
 	int len, id;
 	char *err, *ver, *message;
 
-	ver = aux_itoa(data->count);
+	ver = intToStr(data->count);
 	if (data->args[1][0] == '-')
 	{
 		": Illegal option " :
@@ -57,11 +57,11 @@ char *fetch_error_custom(data_container *data)
 	else
 	{
 		": can't cd to ";
-		id = _strlen(data->args[1]);
+		id = custom_strlen(data->args[1]);
 	}
 
-	len = _strlen(data->argv[0]) + _strlen(data->args[0])
-	len += _strlen(ver) + _strlen(message) + id + 5;
+	len = custom_strlen(data->argv[0]) + custom_strlen(data->args[0])
+	len += custom_strlen(ver) + custom_strlen(message) + id + 5;
 	err = malloc(sizeof(char) * (len + 1));
 	
 	if (err == 0)
@@ -86,9 +86,9 @@ char *missing_file_error(data_container *data)
 	int len;
 	char *err, *ver;
 
-	ver = aux_itoa(data->count);
-	len = _strlen(data->argv[0]) + _strlen(ver);
-	len += _strlen(data->args[0]) + 16;
+	ver = intToStr(data->count);
+	len = custom_strlen(data->argv[0]) + custom_strlen(ver);
+	len += custom_strlen(data->args[0]) + 16;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == 0)
 	{
@@ -96,13 +96,13 @@ char *missing_file_error(data_container *data)
 		free(ver);
 		return (NULL);
 	}
-	_strcpy(err, data->argv[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver);
-	_strcat(err, ": ");
-	_strcat(err, data->args[0]);
-	_strcat(err, ": not found\n");
-	_strcat(err, "\0");
+	custom_strcpy(err, data->argv[0]);
+	custom_strcat(err, ": ");
+	custom_strcat(err, ver);
+	custom_strcat(err, ": ");
+	custom_strcat(err, data->args[0]);
+	custom_strcat(err, ": not found\n");
+	custom_strcat(err, "\0");
 	free(ver);
 	return (err);
 }
@@ -118,23 +118,23 @@ char *shell_terminate_error(data_container *data)
 	char *err;
 	char *ver;
 
-	ver = aux_itoa(data->count);
-	len = _strlen(data->argv[0]) + _strlen(ver);
-	len += _strlen(data->args[0]) + _strlen(data->args[1]) + 23;
+	ver = intToStr(data->count);
+	len = custom_strlen(data->argv[0]) + custom_strlen(ver);
+	len += custom_strlen(data->args[0]) + custom_strlen(data->args[1]) + 23;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == 0)
 	{
 		free(ver);
 		return (NULL);
 	}
-	_strcpy(err, data->argv[0]);
-	_strcat(err, ": ");
-	_strcat(err, ver);
-	_strcat(err, ": ");
-	_strcat(err, data->args[0]);
-	_strcat(err, ": error number:");
-	_strcat(err, data->args[1]);
-	_strcat(err, "\n\0");
+	custom_strcpy(err, data->argv[0]);
+	custom_strcat(err, ": ");
+	custom_strcat(err, ver);
+	custom_strcat(err, ": ");
+	custom_strcat(err, data->args[0]);
+	custom_strcat(err, ": error number:");
+	custom_strcat(err, data->args[1]);
+	custom_strcat(err, "\n\0");
 	free(ver);
 
 	return (err);

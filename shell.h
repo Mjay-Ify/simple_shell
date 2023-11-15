@@ -40,10 +40,10 @@ void env_assist_alias(void);
 void env_assist(void);
 void env_assist_cd(void);
 
-line_list *append_line_to_end(line_list **list, char *line);
-void deallocate_sep_list(sep_list **list);
-sep_list *append_sep_to_end(sep_list **list, char seperator);
-void free_line_list(line_list **list);
+line_list *append_line_to_end(c_line_list **list, char *line);
+void deallocate_sep_list(separator_list **list);
+sep_list *append_sep_to_end(separator_list **list, char seperator);
+void free_line_list(c_line_list **list);
 
 char *del_comment(char *insert);
 void looping_sh(data_container *data);
@@ -79,8 +79,8 @@ void verify_envn(r_var **heads, char *insert, data_container *data);
 
 char **crack_line(char *insert);
 int crack_cmd(data_container *data, char *insert);
-void next_line(sep_list **sep_list, c_line_list **l_list, data_container *data);
-void add_sep(sep_list **sep_head, c_line_list **line_head, char *insert);
+void next_line(separator_list **sep_list, c_line_list **l_list, data_container *data);
+void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert);
 char *replace_char(char *insert, int bool);
 
 int obtain_error(data_container *data, int val);
@@ -172,19 +172,19 @@ typedef struct c_line_list_s
 } c_line_list;
 
 /**
- * struct r_var_list - single linked list
+ * struct var_list - single linked list
  * @len_var: length of the variable
- * @val: value of the variable
- * @len_val: length of the value
+ * @value: value of the variable
+ * @len_value: length of the value
  * @next: next node
  * Description: single linked list to store variables
  */
-typedef struct r_var_list
+typedef struct var_list
 {
 	int len_var;
 	char *value;
 	int len_value;
-	struct r_var_list *next;
+	struct var_list *next;
 } r_var;
 
 /**

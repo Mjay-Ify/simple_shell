@@ -16,6 +16,80 @@
 #define TOKEN_BUFFERSIZE 128
 #define TOKEN_SEP " \t\r\n\a"
 
+extern char **environ;
+
+/**
+ * struct data - struct containing all relevant data on runtime
+ * @argv: argument vector
+ * @insert: command line entered by the user
+ * @args: tokens of the cosmmand line
+ * @stat: last status of the shell
+ * @count: counts line
+ * @envn: environment variable
+ * @pid: process ID of the shell
+ */
+typedef struct data
+{
+	char **argv;
+	char *insert;
+	char **args;
+	int stat;
+	int count;
+	char **envn;
+	char *pid;
+} data_container;
+
+/**
+ * struct separator_list_s - single linked list
+ * @sep: ; | &
+ * @next: next node
+ * Description: single linked list to store separators
+ */
+typedef struct separator_list_s
+{
+	char sep;
+	struct separator_list_s *next;
+} separator_list;
+
+/**
+ * c_struct line_list_s - single linked list
+ * @line: command line
+ * @next: next node
+ * Description: single linked list to store command lines
+ */
+typedef struct c_line_list_s
+{
+	char *line;
+	struct c_line_list_s *next;
+} c_line_list;
+
+/**
+ * struct var_list - single linked list
+ * @len_var: length of the variable
+ * @value: value of the variable
+ * @len_value: length of the value
+ * @next: next node
+ * Description: single linked list to store variables
+ */
+typedef struct var_list
+{
+	int len_var;
+	char *value;
+	int len_value;
+	struct var_list *next;
+} r_var;
+
+/**
+ * struct builtin_s - Builtin struct for command args.
+ * @name: The name of the command builtin i.e cd, env, etc
+ * @f: data type pointer function.
+ */
+typedef struct builtin_s
+{
+	char *alias;
+	int (*f)(data_container *datash);
+} builtin;
+
 char *strcat_custom(data_container *, char *, char *, char *);
 char *fetch_error_custom(data_container *data);
 char *missing_file_error(data_container *data);
@@ -123,79 +197,5 @@ void print_syn_err(data_container *sh_data, char *insert, int n, int bool);
 int insert_char(char *insert, int *n);
 int err_sep_op(char *insert, int n, char final);
 int char_dup(char *insert, int n);
-
-extern char **environ;
-
-/**
- * struct data - struct containing all relevant data on runtime
- * @argv: argument vector
- * @insert: command line entered by the user
- * @args: tokens of the cosmmand line
- * @stat: last status of the shell
- * @count: counts line
- * @envn: environment variable
- * @pid: process ID of the shell
- */
-typedef struct data
-{
-	char **argv;
-	char *insert;
-	char **args;
-	int stat;
-	int count;
-	char **envn;
-	char *pid;
-} data_container;
-
-/**
- * struct separator_list_s - single linked list
- * @sep: ; | &
- * @next: next node
- * Description: single linked list to store separators
- */
-typedef struct separator_list_s
-{
-	char sep;
-	struct separator_list_s *next;
-} separator_list;
-
-/**
- * c_struct line_list_s - single linked list
- * @line: command line
- * @next: next node
- * Description: single linked list to store command lines
- */
-typedef struct c_line_list_s
-{
-	char *line;
-	struct c_line_list_s *next;
-} c_line_list;
-
-/**
- * struct var_list - single linked list
- * @len_var: length of the variable
- * @value: value of the variable
- * @len_value: length of the value
- * @next: next node
- * Description: single linked list to store variables
- */
-typedef struct var_list
-{
-	int len_var;
-	char *value;
-	int len_value;
-	struct var_list *next;
-} r_var;
-
-/**
- * struct builtin_s - Builtin struct for command args.
- * @name: The name of the command builtin i.e cd, env, etc
- * @f: data type pointer function.
- */
-typedef struct builtin_s
-{
-	char *alias;
-	int (*f)(data_container *datash);
-} builtin;
 
 #endif

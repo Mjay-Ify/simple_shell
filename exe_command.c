@@ -45,19 +45,19 @@ char *loc_cmd(char *n_cmd, char **envn)
 			if (_iscdire(way, &n))
 				if (stat(n_cmd, &st) == 0)
 					return (n_cmd);
-			len_dirs = _strlen(token_way);
+			len_dirs = custom_strlen(token_way);
 			dirs = malloc(len_dirs + len_cmds + 2);
-			_strcpy(dirs, token_way);
-			_strcat(dirs, "/");
-			_strcat(dirs, cmd);
-			_strcat(dirs, "\0");
+			custom_strcpy(dirs, token_way);
+			custom_strcat(dirs, "/");
+			custom_strcat(dirs, cmd);
+			custom_strcat(dirs, "\0");
 			if (stat(dirs, &st) == 0)
 			{
 				free(ptr_way);
 				return (dirs);
 			}
 			free(dirs);
-			token_way = _strtok(NULL, ":");
+			token_way = custom_strtok(NULL, ":");
 		}
 		free(ptr_way);
 		if (stat(cmd, &st) == 0)
@@ -128,7 +128,7 @@ int verify_cmd_err(char *dirs, data_container *sh_data)
 		return (1);
 	}
 
-	if (_strcmp(sh_data->args[0], dirs) != 0)
+	if (custom_strcmp(sh_data->args[0], dirs) != 0)
 	{
 		if (access(dirs, X_OK) == -1)
 		{
@@ -184,7 +184,7 @@ int exe_command(data_container *sh_data)
 	}
 	else if (pid < 0)
 	{
-		perror(sh_data->av[0]);
+		perror(sh_data->argv[0]);
 		return (1);
 	}
 	else
@@ -194,6 +194,6 @@ int exe_command(data_container *sh_data)
 		} while (!WIFEXITED(stat) && !WIFSIGNALED(stat));
 	}
 
-	sh_data->status = stat / 256;
+	sh_data->stat = stat / 256;
 	return (1);
 }

@@ -142,7 +142,7 @@ int crack_cmd(data_container *data, char *insert)
 	{
 		data->insert = line_list->line;
 		data->args = crack_line(data->insert);
-		sl_loop = obtain_line(data);
+		sl_loop = execute_line(data);
 		free(data->args);
 
 		if (sl_loop == 0)

@@ -166,7 +166,7 @@ ssize_t obtain_line(char **line_buff, size_t *i, FILE *str);
 char *read_input(int *n);
 void obtain_signal(int sig_val);
 int obtain_help(data_container *data);
-int (*obtain_builtin(char *command))(data_container *);
+int (*obtain_builtin(char *command))(data_container *data);
 
 int is_current_dir(char *path, int *i);
 char *custom_which(char *command, char **environment_variable);

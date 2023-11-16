@@ -173,7 +173,7 @@ char **crack_line(char *insert)
 	char **toks;
 	char *tok;
 
-	bt_size = TOK_BUFFERSIZE;
+	bt_size = TOKEN_BUFFERSIZE;
 	toks = malloc(sizeof(char *) * (bt_size));
 	if (toks == NULL)
 	{

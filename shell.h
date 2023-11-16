@@ -184,12 +184,14 @@ int cmp_envn(data_container *sh_data);
 void put_envn(char *alias, char *val, data_container *sh_data);
 char *cpy_data(char *alias, char *val);
 
+int change_directory_command(data_container *data);
+
 int close_shell(data_container *data);
 
 int find_b_cmd(data_container *data);
 int execute_line(data_container *data);
 
-void custom_rev_string(char *str) 
+void custom_rev_string(char *str);
 int verify_syn_err(data_container *sh_data, char *insert);
 void print_syn_err(data_container *sh_data, char *insert, int n, int bool);
 int insert_char(char *insert, int *n);

@@ -9,11 +9,11 @@
 int (*obtain_builtin(char *command))(data_container *)
 {
 	builtin built_in[] = {
-		{ "env", _env },
-		{ "exit", exit_sh },
-		{ "setenv", _setenv },
-		{ "unsetenv", _unsetenv },
-		{ "cd", cd_sh },
+		{ "env", print_envn },
+		{ "exit", close_shell },
+		{ "setenv", cmp_envn },
+		{ "unsetenv", del_envn },
+		{ "cd", change_directory_command },
 		{ "help", obtain_help },
 		{ NULL, NULL }
 	};

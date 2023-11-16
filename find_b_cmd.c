@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * find_b_cmd - Searches for and executes built-in commands.

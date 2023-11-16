@@ -90,7 +90,7 @@ typedef struct builtin_s
 	int (*f)(data_container *datash);
 } builtin;
 
-char *strcat_custom(data_container *, char *, char *, char *);
+char *strcat_custom(data_container *data, char *message, char *err, char *ver);
 char *fetch_error_custom(data_container *data);
 char *missing_file_error(data_container *data);
 char *shell_terminate_error(data_container *data);

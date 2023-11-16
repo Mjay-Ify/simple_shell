@@ -100,7 +100,7 @@ void cd_previous_get(data_container *data)
 	getcwd(current_path, sizeof(current_path));
 	copy_current_path = custom_strdup(current_path);
 
-	old_pwd = custom_getenv("OLDPWD", data->_environment_variable);
+	old_pwd = obtain_envn("OLDPWD", data->_environment_variable);
 
 	if (old_pwd == NULL)
 		copy_old_pwd = copy_current_path;
@@ -114,7 +114,7 @@ void cd_previous_get(data_container *data)
 	else
 		custom_set_env("PWD", copy_old_pwd, data);
 
-	previous_pwd = custom_getenv("PWD", data->envn);
+	previous_pwd = obtain_envn("PWD", data->envn);
 
 	write(STDOUT_FILENO, previous_pwd, custom_strlen(previous_pwd));
 	write(STDOUT_FILENO, "\n", 1);
@@ -141,7 +141,7 @@ void cd_to_home_get(data_container *data)
 	getcwd(current_path, sizeof(current_path));
 	previous_pwd = custom_strdup(current_path);
 
-	home_directory = custom_getenv("HOME", data->envn);
+	home_directory = obtain_envn("HOME", data->envn);
 
 	if (home_directory == NULL)
 	{

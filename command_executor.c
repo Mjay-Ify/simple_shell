@@ -33,7 +33,7 @@ char *custom_which(char *command, char **environment_variable)
 	int len_dir, len_cmd, i;
 	struct stat st;
 
-	path = custom_getenv("PATH", environment_variable);
+	path = obtain_envn("PATH", environment_variable);
 	if (path)
 	{
 		ptr_path = custom_strdup(path);

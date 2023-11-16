@@ -8,7 +8,7 @@
  */
 int execute_line(data_container *data)
 {
-	int (*builtin)(data_container *datash);
+	int (*built_in)(data_container *datash);
 
 	if (data->args[0] == NULL)
 		return (1);
@@ -16,7 +16,7 @@ int execute_line(data_container *data)
 	builtin = obtain_builtin(data->args[0]);
 
 	if (builtin != NULL)
-		return (builtin(data));
+		return (built_in(data));
 
 	return (command_execute(data));
 }

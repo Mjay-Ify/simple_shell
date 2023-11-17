@@ -14,7 +14,7 @@ int count_digit(int n)
 
 	if (n < 0)
 	{
-		lenght++;
+		length++;
 		i = n * -1;
 	}
 	else
@@ -74,7 +74,7 @@ char *intToStr(int n)
  * Return: integer.
  */
 
-int custom_atoi(const char *str);
+int custom_atoi(const char *str)
 {
 	unsigned int len = 0, size = 0, i = 0, n = 1, b = 1, a;
 

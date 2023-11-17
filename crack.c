@@ -197,7 +197,7 @@ char **crack_line(char *insert)
 			}
 		}
 		tok = custom_strtok(NULL, TOKEN_SEP);
-		toks[i] = tok;
+		toks[n] = tok;
 	}
 
 	return (toks);

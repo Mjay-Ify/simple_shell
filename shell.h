@@ -105,10 +105,10 @@ void print_exit_help(void);
 char *custom_strcat(char *custom_dest, const char *source);
 char *custom_strcpy(char *custom_dest, char *source);
 int custom_strcmp(char *str1, char *str2);
-/*
-* char *custom_strchr(char *str, char c);
-* int custom_strspn(char *str, char *receive);
-*/
+
+char *custom_strchr(char *str, char c);
+int custom_strspn(char *str, char *receive);
+
 
 void cd_dot_get(data_container *data);
 void cd_to_get(data_container *data);

@@ -92,7 +92,7 @@ char *custom_strtok(char input_str[], const char *delimiter)
 
 	for (bool = 0; *current_token; current_token++)
 	{
-		if (curent_token != current_token)
+		if (curent_token != token_start)
 			if (*current_token && *(current_token - 1) == '\0')
 				break;
 		i = 0;
@@ -126,7 +126,7 @@ int is_number(const char *str)
 {
 	unsigned int i;
 
-	for (i = 0; str[i] i++)
+	for (i = 0; str[I]; i++)
 	{
 		if (str[i] < 48 || str[i] > 57)
 			return (0);

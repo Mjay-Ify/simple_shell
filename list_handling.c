@@ -4,7 +4,7 @@
 /**
  * append_sep_to_end - function to append separator
  * @list: pointer ot the linked list head
- * @seperator: separator charcter (; | &).
+ * @separator: separator charcter (; | &).
  * Return: pointer to the updated list
  */
 

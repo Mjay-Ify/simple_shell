@@ -102,7 +102,7 @@ int custom_strspn(char *str, char *receive)
 		bool = 1;
 		for (j = 0; *(receive + j) != '\0'; j++)
 		{
-			if (*(s + i) == *(receive + j))
+			if (*(str + i) == *(receive + j))
 			{
 				bool = 0;
 				break;

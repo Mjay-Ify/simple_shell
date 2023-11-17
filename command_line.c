@@ -13,9 +13,9 @@ int execute_line(data_container *data)
 	if (data->args[0] == NULL)
 		return (1);
 
-	builtin = obtain_builtin(data->args[0]);
+	built_in = obtain_builtin(data->args[0]);
 
-	if (builtin != NULL)
+	if (built_in != NULL)
 		return (built_in(data));
 
 	return (command_execute(data));

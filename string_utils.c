@@ -97,7 +97,7 @@ int custom_strspn(char *str, char *receive)
 {
 	int i, j, bool;
 
-	for (i = 0; *(s + i) != '\0'; i++)
+	for (i = 0; *(str + i) != '\0'; i++)
 	{
 		bool = 1;
 		for (j = 0; *(receive + j) != '\0'; j++)

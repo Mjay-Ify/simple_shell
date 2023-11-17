@@ -49,7 +49,7 @@ char *custom_which(char *command, char **environment_variable)
 			dir = malloc(len_dir + len_cmd + 2);
 			custom_strcpy(dir, token_path);
 			custom_strcat(dir, "/");
-			custom_strcat(dir, cmd);
+			custom_strcat(dir, command);
 			custom_strcat(dir, "\0");
 			if (stat(dir, &st) == 0)
 			{

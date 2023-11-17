@@ -150,7 +150,7 @@ int crack_cmd(data_container *data, char *insert)
 		next_line(&sep_list, &line_list, data);
 
 		if (line_list != NULL)
-			line_list = line_list->nxt;
+			line_list = line_list->next;
 	}
 
 	deallocate_sep_list(&sep_head);

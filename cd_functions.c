@@ -100,7 +100,7 @@ void cd_previous_get(data_container *data)
 	getcwd(current_path, sizeof(current_path));
 	copy_current_path = custom_strdup(current_path);
 
-	old_pwd = obtain_envn("OLDPWD", data->_environment_variable);
+	old_pwd = obtain_envn("OLDPWD", data->envn);
 
 	if (old_pwd == NULL)
 		copy_old_pwd = copy_current_path;

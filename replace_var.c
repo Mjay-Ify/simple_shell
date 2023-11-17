@@ -54,8 +54,8 @@ int verify_var(r_var **heads, char *insert, char *stat, data_container *data)
 {
 	int n, list, lpid;
 
-	list = custom_strlen(st);
-	lpid = custom_strlen(sh_data->pid);
+	list = custom_strlen(stat);
+	lpid = custom_strlen(data->pid);
 
 	for (n = 0; insert[n]; n++)
 	{

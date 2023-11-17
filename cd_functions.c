@@ -14,11 +14,11 @@ void cd_dot_get(data_container *data)
 
 	getcwd(current_path, sizeof(current_path));
 	copy_current_path = custom_strdup(current_path);
-	custom_set_env("OLDPWD", copy_current_path, data);
+	put_envn("OLDPWD", copy_current_path, data);
 	target_dir = data->args[1];
 	if (custom_strcmp(".", target_dir) == 0)
 	{
-		custom_set_env("PWD", copy_current_path, data);
+		put_envn("PWD", copy_current_path, data);
 		free(copy_current_path);
 		return;
 	}
@@ -40,12 +40,12 @@ void cd_dot_get(data_container *data)
 	if (tokenized_path != NULL)
 	{
 		chdir(tokenized_path);
-		custom_set_env("PWD", tokenized_path, data);
+		put_envn("PWD", tokenized_path, data);
 	}
 	else
 	{
 		chdir("/");
-		custom_set_env("PWD", "/", data);
+		put_envn("PWD", "/", data);
 	}
 	data->stat = 0;
 	free(copy_current_path);
@@ -74,10 +74,10 @@ void cd_to_get(data_container *data)
 	}
 
 	copy_current_path = custom_strdup(current_path);
-	custom_set_env("OLDPWD", copy_current_path, data);
+	put_envn("OLDPWD", copy_current_path, data);
 
 	copy_target_dir = custom_strdup(target_dir);
-	custom_set_env("PWD", copy_target_dir, data);
+	put_envn("PWD", copy_target_dir, data);
 
 	free(copy_current_path);
 	free(copy_target_dir);
@@ -107,12 +107,12 @@ void cd_previous_get(data_container *data)
 	else
 		copy_old_pwd = custom_strdup(old_pwd);
 
-	custom_set_env("OLDPWD", copy_current_path, data);
+	put_envn("OLDPWD", copy_current_path, data);
 
 	if (chdir(copy_old_pwd) == -1)
-		custom_set_env("PWD", copy_current_path, data);
+		put_envn("PWD", copy_current_path, data);
 	else
-		custom_set_env("PWD", copy_old_pwd, data);
+		put_envn("PWD", copy_old_pwd, data);
 
 	previous_pwd = obtain_envn("PWD", data->envn);
 
@@ -145,7 +145,7 @@ void cd_to_home_get(data_container *data)
 
 	if (home_directory == NULL)
 	{
-		custom_set_env("OLDPWD", previous_pwd, data);
+		put_envn("OLDPWD", previous_pwd, data);
 		free(previous_pwd);
 		return;
 	}
@@ -156,8 +156,8 @@ void cd_to_home_get(data_container *data)
 		return;
 	}
 
-	custom_set_env("OLDPWD", previous_pwd, data);
-	custom_set_env("PWD", home_directory, data);
+	put_envn("OLDPWD", previous_pwd, data);
+	put_envn("PWD", home_directory, data);
 	free(previous_pwd);
 	data->stat = 0;
 

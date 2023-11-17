@@ -8,17 +8,17 @@
  * Return: pointer to the updated list
  */
 
-separator_list *append_sep_to_end(separator_list **list, char seperator)
+separator_list *append_sep_to_end(separator_list **list, char separator)
 {
 	separator_list *new_node, *temp;
 
 	new_node = malloc(sizeof(separator_list));
-	if (new == NULL)
+	if (new_node == NULL)
 		return (NULL);
 
 	new_node->sep = separator;
 	new_node->next = NULL;
-	temp = *list
+	temp = *list;
 	if (list == NULL)
 		*list = new_node;
 	else
@@ -46,10 +46,10 @@ void deallocate_sep_list(separator_list **list)
 		current = *list;
 		while ((tmp = current) != NULL)
 		{
-			next = *current->next;
+			current = *current->next;
 			free(current);
 		}
-	*list = NULL; /*set the head to null after freeing all nodes, */
+		*list = NULL;
 	}
 }
 

@@ -11,7 +11,7 @@ char *custom_strcat(char *custom_dest, const char *source)
 {
 	int a, b;
 
-	for (a - 0; custom_dest[a] != '\0'; a++)
+	for (a = 0; custom_dest[a] != '\0'; a++)
 		;
 
 	for (b = 0; source[b] != '\0'; b++)

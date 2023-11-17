@@ -20,7 +20,7 @@ r_var *append_to_rva(r_var **list, int lvar, char *value, int lval)
 
 	new_node->len_var = lvar;
 	new_node->len_value = lval;
-	new_node->value = val;
+	new_node->value = value;
 
 	new_node->next = NULL;
 	temp = *list;

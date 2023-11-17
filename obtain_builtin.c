@@ -19,7 +19,7 @@ int (*obtain_builtin(char *command))(data_container *)
 	};
 	int n;
 
-	for (n = 0; built_in[n].name; n++)
+	for (n = 0; built_in[n].alias; n++)
 	{
 		if (custom_strcmp(built_in[n].alias, command) == 0)
 			break;

@@ -8,10 +8,10 @@
  */
 void support_env_tasks(void)
 {
-	const char *help = "env: env [option] [name=value] [command [args]]\n";
+	const char *help = "env: env [option] [name=value] [command [args]]\n\t";
 
 	write(STDOUT_FILENO, help, custom_strlen(help));
-	help = "\tDisplay the shell's environment.\n";
+	help = "Print the enviroment of the shell.\n";
 
 	write(STDOUT_FILENO, help, custom_strlen(help));
 }

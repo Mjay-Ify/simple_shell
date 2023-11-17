@@ -70,7 +70,7 @@ int custom_strcmp(char *str1, char *str2)
  * @c: character to be located
  * Return: the pointer to the first occurrence of the character
  * or NULL if not found.
- 
+ */ 
 
 char *custom_strchr(char *str, char c)
 {
@@ -83,7 +83,7 @@ char *custom_strchr(char *str, char c)
 		return (str + i);
 	return ('\0');
 }
-*/
+
 /**
  * custom_strspn - Computes the length of a prefix substring
  * consiting of received bytes.
@@ -91,7 +91,7 @@ char *custom_strchr(char *str, char c)
  * @receive: The string conatining accepted bytes.
  *
  * Return: the number of accepted bytes
- 
+ */
 
 int custom_strspn(char *str, char *receive)
 {
@@ -113,4 +113,3 @@ int custom_strspn(char *str, char *receive)
 	}
 	return (i);
 }
-*/

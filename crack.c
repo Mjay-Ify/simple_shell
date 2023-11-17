@@ -71,7 +71,7 @@ void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert)
 	c_line = custom_strtok(insert, ";|&");
 	do {
 		c_line = replace_char(c_line, 1);
-		append_line_to_end((line_head, c_line);
+		append_line_to_end(line_head, c_line);
 		c_line = custom_strtok(NULL, ";|&");
 	} while (c_line != NULL);
 }

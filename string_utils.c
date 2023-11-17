@@ -70,7 +70,7 @@ int custom_strcmp(char *str1, char *str2)
  * @c: character to be located
  * Return: the pointer to the first occurrence of the character
  * or NULL if not found.
- */ 
+ */
 
 char *custom_strchr(char *str, char c)
 {

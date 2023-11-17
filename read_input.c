@@ -10,7 +10,7 @@ char *read_input(int *n)
 	char *insert = NULL;
 	size_t buffersize = 0;
 
-	*n = obtain_line(&insert, &buffersize, stdin);
+	*n = getline(&insert, &buffersize, stdin);
 
 	return (insert);
 }

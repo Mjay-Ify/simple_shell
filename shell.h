@@ -96,7 +96,7 @@ char *missing_file_error(data_container *data);
 char *shell_terminate_error(data_container *data);
 
 void support_unsetenv_command(void);
-void env_variable_support(void;)
+void env_variable_support(void);
 void support_env_tasks(void);
 void assist_general_command(void);
 void print_exit_help(void);

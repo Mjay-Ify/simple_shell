@@ -82,7 +82,7 @@ void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert)
  * @l_list: The list of command line.
  * @data: data format
  */
-void next_line(separator_list **sep_list, c_line_list **l_list, data_container *data)
+void next_line(separator_list **sep_list, c_line_list **line_list, data_container *data)
 {
 	int s_loop;
 	separator_list *sep_ls;
@@ -182,7 +182,7 @@ char **crack_line(char *insert)
 	}
 
 	tok = custom_strtok(insert, TOKEN_SEP);
-	tok[0] = tok;
+	toks[0] = tok;
 
 	for (n = 1; tok != NULL; n++)
 	{

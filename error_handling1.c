@@ -25,7 +25,7 @@ char *system_environment_error(data_container *data)
 		return (NULL);
 	}
 
-	custom_strcpy(err, data->av[0]);
+	custom_strcpy(err, data->argv[0]);
 	custom_strcat(err, ": ");
 	custom_strcat(err, ver);
 	custom_strcat(err, ": ");
@@ -49,8 +49,8 @@ char *route_126_error_alert(data_container *data)
 	int len;
 	char *ver, *err;
 
-	ver = aux_itoa(data->counter);
-	len = custom_strlen(data->av[0]) + custom_strlen(ver)
+	ver = intToStr(data->counter);
+	len = custom_strlen(data->argv[0]) + custom_strlen(ver)
 		+ custom_strlen(data->args[0]) + 24;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == NULL)

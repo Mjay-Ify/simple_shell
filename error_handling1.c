@@ -50,11 +50,12 @@ char *route_126_error_alert(data_container *data)
 	char *ver, *err;
 
 	ver = intToStr(data->count);
-	len = custom_strlen(data->argv[0]) + custom_strlen(ver)
-		+ custom_strlen(data->args[0]) + 24;
+	len = custom_strlen(data->argv[0]) + custom_strlen(ver);
+	len += custom_strlen(data->args[0]) + 24;
 	err = malloc(sizeof(char) * (len + 1));
 	if (err == NULL)
 	{
+		free(err);
 		free(ver);
 		return (NULL);
 	}
@@ -63,7 +64,7 @@ char *route_126_error_alert(data_container *data)
 	custom_strcat(err, ver);
 	custom_strcat(err, ": ");
 	custom_strcat(err, data->args[0]);
-	custom_strcat(err, ": permission denied\n");
+	custom_strcat(err, ": Permission denied\n");
 	custom_strcat(err, "\0");
 	free(ver);
 

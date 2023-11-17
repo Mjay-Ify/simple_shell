@@ -188,7 +188,6 @@ int change_directory_command(data_container *data);
 
 int close_shell(data_container *data);
 
-int find_b_cmd(data_container *data);
 int execute_line(data_container *data);
 
 void custom_rev_string(char *str);

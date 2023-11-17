@@ -29,7 +29,7 @@ int custom_strlen(const char *str)
 {
 	int length;
 
-	for (len = 0; str[length] != '\0'; length++)
+	for (length = 0; str[length] != '\0'; length++)
 	{
 	}
 	return (length);

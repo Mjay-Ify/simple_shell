@@ -34,13 +34,13 @@ void put_envn(char *alias, char *val, data_container *sh_data)
 	int n;
 	char *envn_var, *envn_alias;
 
-	for (i = 0; sh_data->envn[n]; n++)
+	for (n = 0; sh_data->envn[n]; n++)
 	{
 		envn_var = custom_strdup(sh_data->envn[n]);
 		envn_alias = custom_strtok(envn_var, "=");
 		if (custom_strcmp(envn_alias, alias) == 0)
 		{
-			free(sh_datash->envn[n]);
+			free(sh_data->envn[n]);
 			sh_data->envn[n] = cpy_data(envn_alias, val);
 			free(envn_var);
 			return;
@@ -93,7 +93,7 @@ int del_envn(data_container *sh_data)
 	{
 		envn_var = custom_strdup(sh_data->envn[a]);
 		envn_alias = custom_strtok(envn_var, "=");
-		if (custom_strcmp(name_env, sh_data->args[1]) == 0)
+		if (custom_strcmp(envn_alias, sh_data->args[1]) == 0)
 		{
 			n = a;
 		}

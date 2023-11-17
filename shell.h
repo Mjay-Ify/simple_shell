@@ -52,7 +52,7 @@ typedef struct separator_list_s
 } separator_list;
 
 /**
- * c_struct line_list_s - single linked list
+ * struct c_line_list_s - single linked list
  * @line: command line
  * @next: next node
  * Description: single linked list to store command lines
@@ -81,8 +81,9 @@ typedef struct var_list
 
 /**
  * struct builtin_s - Builtin struct for command args.
- * @name: The name of the command builtin i.e cd, env, etc
- * @f: data type pointer function.
+ * @alias: The name of the command builtin i.e cd, env, etc
+ * @f: data type pointer function
+ * Description: built in
  */
 typedef struct builtin_s
 {
@@ -158,7 +159,8 @@ void verify_envn(r_var **heads, char *insert, data_container *data);
 
 char **crack_line(char *insert);
 int crack_cmd(data_container *data, char *insert);
-void next_line(separator_list **sep_list, c_line_list **line_list, data_container *data);
+void next_line(separator_list **sep_list,
+c_line_list **line_list, data_container *data);
 void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert);
 char *replace_char(char *insert, int bool);
 

@@ -23,7 +23,7 @@ int count_digit(int n)
 	}
 	while (i > 9)
 	{
-		lenght++;
+		length++;
 		i = i / 10;
 	}
 

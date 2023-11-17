@@ -58,7 +58,7 @@ void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert)
 
 	for (n = 0; insert[n]; n++)
 	{
-		if (input[n] == ';')
+		if (insert[n] == ';')
 			append_sep_to_end(sep_head, insert[n]);
 
 		if (insert[n] == '|' || insert[n] == '&')

@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 	data_container data;
 	(void) argc;
 
-	signal(SIGINT, get_sigint);
+	signal(SIGINT, obtain_signal);
 	set_datash(&data, argv);
 	looping_sh(&data);
 	free_datash(&data);

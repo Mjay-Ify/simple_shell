@@ -27,9 +27,9 @@ char *strcat_custom(data_container *data, char *message, char *err, char *ver)
 		error_flag[0] = '-';
 		error_flag[1] = data->args[1][1];
 		error_flag[2] = '\0';
+		custom_strcat(err, error_flag);
+		free(error_flag);
 	}
-	custom_strcat(err, error_flag);
-	free(error_flag);
 	else
 		custom_strcat(err, data->args[1]);
 
@@ -51,16 +51,16 @@ char *fetch_error_custom(data_container *data)
 	ver = intToStr(data->count);
 	if (data->args[1][0] == '-')
 	{
-		": Illegal option " :
+		message = ": Illegal option ";
 		id = 2;
 	}
 	else
 	{
-		": can't cd to ";
+		message = ": can't cd to ";
 		id = custom_strlen(data->args[1]);
 	}
 
-	len = custom_strlen(data->argv[0]) + custom_strlen(data->args[0])
+	len = custom_strlen(data->argv[0]) + custom_strlen(data->args[0]);
 	len += custom_strlen(ver) + custom_strlen(message) + id + 5;
 	err = malloc(sizeof(char) * (len + 1));
 

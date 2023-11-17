@@ -132,7 +132,7 @@ char *shell_terminate_error(data_container *data)
 	custom_strcat(err, ver);
 	custom_strcat(err, ": ");
 	custom_strcat(err, data->args[0]);
-	custom_strcat(err, ": Illegal number:");
+	custom_strcat(err, ": Illegal number: ");
 	custom_strcat(err, data->args[1]);
 	custom_strcat(err, "\n\0");
 	free(ver);

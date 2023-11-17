@@ -130,7 +130,7 @@ void print_syn_err(data_container *sh_data, char *insert, int n, int bool)
 		free(count);
 		return;
 	}
-	custom_strcpy(err, sh_data->av[0]);
+	custom_strcpy(err, sh_data->argv[0]);
 	custom_strcat(err, ": ");
 	custom_strcat(err, count);
 	custom_strcat(err, msg_2);

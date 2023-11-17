@@ -25,7 +25,7 @@ separator_list *append_sep_to_end(separator_list **list, char separator)
 	{
 		while (temp->next != NULL)
 			temp = temp->next;
-		temp->next = new;
+		temp->next = new_node;
 	}
 
 	return (*list);
@@ -46,7 +46,7 @@ void deallocate_sep_list(separator_list **list)
 		current = *list;
 		while ((tmp = current) != NULL)
 		{
-			current = *current->next;
+			current = current->next;
 			free(current);
 		}
 		*list = NULL;

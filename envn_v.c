@@ -32,7 +32,7 @@ char *obtain_envn(const char *alias, char **envn)
 	char *envn_ptr;
 	int n, m;
 
-	ptr_envn_ptr = NULL;
+	envn_ptr = NULL;
 	m = 0;
 
 	for (n = 0; envn[n]; n++)

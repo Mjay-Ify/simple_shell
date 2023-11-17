@@ -149,7 +149,7 @@ int crack_cmd(data_container *data, char *insert)
 
 		next_line(&sep_list, &line_list, data);
 
-		if (list_l != NULL)
+		if (line_list != NULL)
 			line_list = line_list->nxt;
 	}
 

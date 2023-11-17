@@ -79,10 +79,11 @@ void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert)
 /**
  * next_line - Move to the next stored command line or separator entry.
  * @sep_list: The list of separator.
- * @l_list: The list of command line.
+ * @line_list: The list of command line.
  * @data: data format
  */
-void next_line(separator_list **sep_list, c_line_list **line_list, data_container *data)
+void next_line(separator_list **sep_list,
+c_line_list **line_list, data_container *data)
 {
 	int s_loop;
 	separator_list *sep_ls;

@@ -63,7 +63,7 @@ char *route_126_error_alert(data_container *data)
 	custom_strcat(err, ver);
 	custom_strcat(err, ": ");
 	custom_strcat(err, data->args[0]);
-	custom_strcat(err, ": access revoked\n");
+	custom_strcat(err, ": permission denied\n");
 	custom_strcat(err, "\0");
 	free(ver);
 

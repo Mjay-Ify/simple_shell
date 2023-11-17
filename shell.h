@@ -158,7 +158,7 @@ void verify_envn(r_var **heads, char *insert, data_container *data);
 
 char **crack_line(char *insert);
 int crack_cmd(data_container *data, char *insert);
-void next_line(separator_list **sep_list, c_line_list **l_list, data_container *data);
+void next_line(separator_list **sep_list, c_line_list **line_list, data_container *data);
 void add_sep(separator_list **sep_head, c_line_list **line_head, char *insert);
 char *replace_char(char *insert, int bool);
 

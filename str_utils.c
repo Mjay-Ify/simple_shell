@@ -95,8 +95,8 @@ char *custom_strtok(char input_str[], const char *delimiter)
 		if (current_token != token_start)
 			if (*current_token && *(current_token - 1) == '\0')
 				break;
-		i = 0;
-		while (delimiter[i])
+
+		for (i = 0; delimiter[i]; i++)
 		{
 			if (*current_token == delimiter[i])
 			{
@@ -105,11 +105,9 @@ char *custom_strtok(char input_str[], const char *delimiter)
 					token_start++;
 				break;
 			}
-			i++;
 		}
 		if (bool == 0 && *current_token)
 			bool = 1;
-		current_token++;
 	}
 	if (bool == 0)
 		return (NULL);

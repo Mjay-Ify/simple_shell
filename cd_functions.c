@@ -52,7 +52,6 @@ void cd_dot_get(data_container *data)
 	free(copy_current_path);
 }
 
-
 /**
  * cd_to_get - Changes the current working directory
  * to a user-specified directory

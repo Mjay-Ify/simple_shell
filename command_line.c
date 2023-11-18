@@ -1,15 +1,13 @@
 #include "shell.h"
 
-
 /**
- * execute_line -  Finds builtins and commands.
- * @data: data relevant to the operations (args)
- * Return: 1 on success, indicating the successful
- * identification and processing of built-ins and commands.
+ * execute_line - function to finds builtins and commands
+ *
+ * @data: data relevant (args)
+ * Return: 1 on success.
  */
 int execute_line(data_container *data)
 {
-	int (*builtin)(data_container *data);
 	int (*built_in)(data_container *datash);
 
 	if (data->args[0] == NULL)

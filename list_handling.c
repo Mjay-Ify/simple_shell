@@ -47,7 +47,7 @@ void deallocate_sep_list(separator_list **list)
 		while ((tmp = current) != NULL)
 		{
 			current = current->next;
-			free(current);
+			free(tmp);
 		}
 		*list = NULL;
 	}

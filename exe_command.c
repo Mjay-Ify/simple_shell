@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 /**
  * _iscdire - checks if ":" is in the current direectory
  * @way: pointer to thhe type of charcter

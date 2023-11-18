@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * custom_rev_string - function that reverses a string
  * @str: input string

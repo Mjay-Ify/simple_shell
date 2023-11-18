@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 /**
  * close_shell -  Closes the shell and sets the exit
  * status based on the provided argument

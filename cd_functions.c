@@ -1,11 +1,12 @@
 #include "shell#.h"
 
 /**
- *cd_dot_get - to changes to the parent directory
+ *cd_dot_get - Changes the current working directory to the parent directory.
  *
- * @data: data relevant (environment_variable)
+ * @data: Pointer to data relevant to the operation
+ * (e.g., environment variable).
  *
- * Return: nothing
+ * Return: does not return any value
  */
 void cd_dot_get(data_container *data)
 {
@@ -53,11 +54,11 @@ void cd_dot_get(data_container *data)
 
 
 /**
- * cd_to_get - to changes to a directory given
- * by the user
+ * cd_to_get - Changes the current working directory
+ * to a user-specified directory
  *
- * @data: data relevant (directories)
- * Return: void
+ * @data: Pointer to data relevant to the operation (e.g., directories).
+ * Return: This function does not return any value.
  */
 void cd_to_get(data_container *data)
 {
@@ -86,9 +87,11 @@ void cd_to_get(data_container *data)
 }
 
 /**
- * cd_previous_get - to changes to the previous directory
+ * cd_previous_get -  Changes the current working
+ * directory to the previous directory.
  *
- * @data: data relevant (environ)
+ * @data:  Pointer to data relevant to the operation
+ * (e.g., environment variables).
  * Return: void
  */
 void cd_previous_get(data_container *data)
@@ -128,10 +131,12 @@ void cd_previous_get(data_container *data)
 }
 
 /**
- * cd_to_home_get - to changes to home directory
+ * cd_to_home_get - Changes the current working directory
+ * to the user's home directory.
  *
- * @data: data relevant (environmemt_variable)
- * Return: nothing
+ * @data:  Pointer to data relevant to the operation
+ * (e.g., environment variables).
+ * Return: void
  */
 void cd_to_home_get(data_container *data)
 {

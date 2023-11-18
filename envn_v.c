@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * cmp_envn_alias - To compares envn var names wuth the name passed
- * @n_env: the name of the environment var
- * @alias: the name passed
+ * cmp_envn_alias - Compares envn variable names with the name passed.
+ * @n_env: the name of the environment variable
+ * @alias: the name passed for comparison
  * Return: 0 if they are not equal. Another value if they are.
  */
 int cmp_envn_alias(const char *n_env, const char *alias)
@@ -22,8 +22,8 @@ int cmp_envn_alias(const char *n_env, const char *alias)
 }
 
 /**
- * get_envn - function to get an envn variable
- * @alias: the name of the environment variable
+ * get_envn - get an envnvironment variable
+ * @alias: environment variable's name 
  * @envn: envn variable
  * Return: value of the envn var if found, if not returns NULL.
  */
@@ -49,8 +49,8 @@ char *obtain_envn(const char *alias, char **envn)
 }
 
 /**
- * print_envn - function to prints the envn variables
- * @sh_data: data
+ * print_envn - prints the environment variables
+ * @sh_data: data format
  * Return: 1 on success
  */
 int print_envn(data_container *sh_data)

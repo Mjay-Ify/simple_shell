@@ -2,8 +2,8 @@
 
 /**
  * is_current_dir - Checks if the character at index i in the path is ':'
- * @path: type char pointer
- * @i: type int pointer of index
+ * @path: Pointer to a character array (string) representing the path.
+ * @i: Index indicating the position in the path to check.
  * Return:  1 if the path character is ':', 0 otherwise
  */
 int is_current_dir(char *path, int *i)
@@ -21,10 +21,11 @@ int is_current_dir(char *path, int *i)
 }
 
 /**
- * custom_which - To locates a command
- * @command: command name
- * @environment_variable: environment variable
- * Return: location of the command.
+ * custom_which - Locates the executable path of a command.
+ * @command: The name of the command to locate.
+ * @environment_variable: environment variable containing the command's path.
+ *
+ * Return: location of the command(executable path).
  */
 
 char *custom_which(char *command, char **environment_variable)
@@ -72,8 +73,8 @@ char *custom_which(char *command, char **environment_variable)
 
 /**
  * custom_is_executable - To checks if is an executable
- * @data: data format
- * Return: 0 if is not an executable, other number if it does
+ * @data: The data representing the file format.
+ * Return: 0 if the file is not an executable, a non-zero number if it is.
  */
 int custom_is_executable(data_container *data)
 {
@@ -115,9 +116,10 @@ int custom_is_executable(data_container *data)
 }
 
 /**
- * verify_error_command - To checks if user has permissions to access
- * @dir: destination's directory
- * @data: data structure
+ * verify_error_command - checks if the user has permissions
+ * to access the directory
+ * @dir:  The destination directory to be checked for access permissions.
+ * @data: Data structure containing relevant information for the operation.
  * Return: 1 if there is an error, 0 if not
  */
 int verify_error_command(char *dir, data_container *data)
@@ -152,7 +154,7 @@ int verify_error_command(char *dir, data_container *data)
 
 /**
  * command_execute - Executes command lines
- * @data: data that are relevant
+ * @data: data that are relevant to the command execution.
  * Return: on success 1
  */
 int command_execute(data_container *data)

@@ -3,7 +3,7 @@
 /**
  * obtain_error - To call the error according the builtin
  * @data: the structure of the data that contains arg
- * @val: the error value
+ * @val: the value of the error
  * Return: the error
  */
 int obtain_error(data_container *data, int val)
@@ -35,6 +35,6 @@ int obtain_error(data_container *data, int val)
 		free(err);
 	}
 
-	sh_data->stat = val;
+	data->stat = val;
 	return (val);
 }

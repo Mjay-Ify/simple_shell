@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * cpy_data - to copy the info to be create a new environment
- * @alias: name 
- * @val: value
- * Return: new alias
+ * cpy_data - copies the information to be create a new environment
+ * @alias: name of the alias
+ * @val: value associated with the alias
+ * Return: The new alias created with the provided name and value.
  */
 char *cpy_data(char *alias, char *val)
 {
@@ -25,9 +25,9 @@ char *cpy_data(char *alias, char *val)
 
 /**
  * put_envn - to set the envn variable
- * @alias: envn variable name
+ * @alias: envn variable's name
  * @val: environment variable value
- * @sh_data: data struct
+ * @sh_data: data structure containing relevant information
  */
 void put_envn(char *alias, char *val, data_container *sh_data)
 {
@@ -54,8 +54,9 @@ void put_envn(char *alias, char *val, data_container *sh_data)
 }
 
 /**
- * cmp_envn - to compare envn var name with the name passed.
- * @sh_data: data (env name and env value)
+ * cmp_envn - compares envn var name with the name passed.
+ * @sh_data: data structure comtaining env name
+ * and env value
  * Return: 1 on success
  */
 int cmp_envn(data_container *sh_data)
@@ -73,8 +74,8 @@ int cmp_envn(data_container *sh_data)
 }
 
 /**
- * del_envn - to deletes a environment variable
- * @datash: data relevant (env name)
+ * del_envn - Deletes a environment variable
+ * @sh_data: data relevant (env name)
  * Return: on success 1
  */
 int del_envn(data_container *sh_data)

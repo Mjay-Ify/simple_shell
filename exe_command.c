@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _iscdire - To check ":" is in the current dire
- * @way: type of char pointer
- * @n: type int pointer of index
+ * _iscdire - checks if ":" is in the current direectory
+ * @way: pointer to thhe type of charcter
+ * @n: pointer to an integar representing the index
  * Return: 1 if the way is searchable in the cd, 0 otherwise
  */
 int _iscdire(char *way, int *n)
@@ -23,8 +23,8 @@ int _iscdire(char *way, int *n)
 /**
  * loc_cmd - To locates command
  * @n_cmd: name of command
- * @envn: environment var
- * Return: location of command
+ * @envn: environment variable containing the command's location.
+ * Return: command's location.
  */
 
 char *loc_cmd(char *n_cmd, char **envn)
@@ -71,8 +71,8 @@ char *loc_cmd(char *n_cmd, char **envn)
 }
 
 /**
- * is_exec - To checks if it is an executable
- * @sh_data: data
+ * is_exec - checks if it can be executable
+ * @sh_data: data format
  * Return: 0 if is not an executable, other number if it is
  */
 int is_exec(data_container *sh_data)
@@ -115,9 +115,9 @@ int is_exec(data_container *sh_data)
 }
 
 /**
- * verify_cmd_err - To check if the user has permissions to access
- * @dirs: dir of destination
- * @sh_data: data structure
+ * verify_cmd_err - checks if the user has permissions to verify
+ * @dirs: diectory of destination
+ * @sh_data: data format
  * Return: 1 if there is error, 0 if not
  */
 int verify_cmd_err(char *dirs, data_container *sh_data)
@@ -151,8 +151,8 @@ int verify_cmd_err(char *dirs, data_container *sh_data)
 }
 
 /**
- * exe_command - function to execute command lines
- * @datash: data
+ * exe_command - executes command lines
+ * @sh_data: data format
  * Return: 1 on success
  */
 int exe_command(data_container *sh_data)

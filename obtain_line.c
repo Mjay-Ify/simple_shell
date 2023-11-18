@@ -2,7 +2,7 @@
 
 /**
  * assign_line - Assign values to the line
- * variable for obtain_line
+ * variable for assign_line
  * @line_buff: Buffer that stores the input string
  * @buff: string called to line
  * @a: size of the line
@@ -35,12 +35,12 @@ void assign_line(char **line_buff, size_t *a, char *buff, size_t b)
 	}
 }
 /**
- * obtain_line - Read a string from the input.
- * @line_buff: buffer that stores the input
- * @i: size of line_buff
- * @str: string to read from
+ * obtain_line - Read a string from the inputand stores it in the buffer
+ * @line_buff: buffer that stores the input string
+ * @i: size of buff(line_buff)
+ * @str: input string to be read
  *
- * Return: Amount of bytes to read.
+ * Return: The number of bytes to read.
  */
 ssize_t obtain_line(char **line_buff, size_t *i, FILE *str)
 {

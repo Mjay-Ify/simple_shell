@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * change_directory_command - function to change directory
- * @data: data relevant
+ * change_directory_command - changes directory
+ * @data: data format
  * Return: on success 1
 */
 int change_directory_command(data_shell *data)

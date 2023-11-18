@@ -97,19 +97,19 @@ int custom_is_executable(data_container *data);
 int verify_error_command(char *dir, data_container *data);
 int command_execute(data_container *data);
 
-int cmp_envn_alias(const char *n_env, const char *alias);
-int print_envn(data_container *sh_data);
+int cmp_envn_alias(const char *env, const char *alias);
+int print_envn(data_container *data);
 char *obtain_envn(const char *alias, char **envn);
 
-int exe_command(data_container *sh_data);
-int verify_cmd_err(char *dirs, data_container *sh_data);
-int is_exec(data_container *sh_data);
+int exe_command(data_container *data);
+int verify_cmd_err(char *dirs, data_container *data);
+int is_exec(data_container *data);
 char *loc_cmd(char *n_cmd, char **envn);
 int _iscdire(char *way, int *n);
 
-int del_envn(data_container *sh_data);
-int cmp_envn(data_container *sh_data);
-void put_envn(char *alias, char *val, data_container *sh_data);
+int del_envn(data_container *data);
+int cmp_envn(data_container *data);
+void put_envn(char *alias, char *val, data_container *data);
 char *cpy_data(char *alias, char *val);
 
 int close_shell(data_container *data);
@@ -117,6 +117,12 @@ int close_shell(data_container *data);
 int find_b_cmd(data_container *data);
 int obtain_line(data_container *data);
 
-void custom_rev_string(char *str) 
+void custom_rev_string(char *str);
+int cd_command(data_container *data);
 
+
+void cd_do_gett(data_container *data);
+void cd_to_get(data_container *data);
+void cd_previous_get(data_container *data);
+void cd_to_home_get(data_container *data);
 #endif

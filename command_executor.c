@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 /**
  * is_current_dir - Checks if the character at index i in the path is ':'
  * @path: Pointer to a character array (string) representing the path.

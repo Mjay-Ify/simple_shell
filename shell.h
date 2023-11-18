@@ -203,7 +203,6 @@ int close_shell(data_container *data);
 int execute_line(data_container *data);
 
 void custom_rev_string(char *str);
-int cd_command(data_container *data;
 
 int verify_syn_err(data_container *sh_data, char *insert);
 void print_syn_err(data_container *sh_data, char *insert, int n, int bool);
@@ -211,8 +210,5 @@ int initial_char(char *insert, int *n);
 int err_sep_op(char *insert, int n, char final);
 int char_dup(char *insert, int n);
 
-void cd_do_gett(data_container *data);
-void cd_to_get(data_container *data);
-void cd_previous_get(data_container *data);
-void cd_to_home_get(data_container *data);
+
 #endif

@@ -32,11 +32,8 @@ void verify_envn(r_var **heads, char *insert, data_container *data)
 
 	for (n = 0; insert[n]; n++)
 	{
-		if (insert[n] == ' ' ||
-		insert[n] == '\t' ||
-		insert[n] == ';' ||
-		insert[n] == '\n')
-		break;
+		if (insert[n] == ' ' || insert[n] == '\t' || insert[n] == ';' || insert[n] == '\n')
+			break;
 	}
 
 	append_to_rva(heads, n, NULL, 0);

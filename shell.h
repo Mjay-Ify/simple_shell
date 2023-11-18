@@ -18,6 +18,7 @@
 
 extern char **environ;
 
+
 /**
  * struct data - struct containing all relevant data on runtime
  * @argv: argument vector

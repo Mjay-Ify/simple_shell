@@ -22,13 +22,8 @@ int cmp_envn_alias(const char *n_env, const char *alias)
 }
 
 /**
-<<<<<<< HEAD
- * get_envn - get an envnvironment variable
- * @alias: environment variable's name 
-=======
  * obtain_envn - function to get an envn variable
  * @alias: the name of the environment variable
->>>>>>> c1054b2be7395947f15fd5fd6116db7eea272e76
  * @envn: envn variable
  * Return: value of the envn var if found, if not returns NULL.
  */

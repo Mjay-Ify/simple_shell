@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 /**
  * obtain_error - To call the error according the builtin
  * @data: the structure of the data that contains arg

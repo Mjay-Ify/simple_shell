@@ -22,8 +22,13 @@ int cmp_envn_alias(const char *n_env, const char *alias)
 }
 
 /**
+<<<<<<< HEAD
  * get_envn - get an envnvironment variable
  * @alias: environment variable's name 
+=======
+ * obtain_envn - function to get an envn variable
+ * @alias: the name of the environment variable
+>>>>>>> c1054b2be7395947f15fd5fd6116db7eea272e76
  * @envn: envn variable
  * Return: value of the envn var if found, if not returns NULL.
  */
@@ -32,7 +37,7 @@ char *obtain_envn(const char *alias, char **envn)
 	char *envn_ptr;
 	int n, m;
 
-	ptr_envn_ptr = NULL;
+	envn_ptr = NULL;
 	m = 0;
 
 	for (n = 0; envn[n]; n++)
@@ -57,13 +62,13 @@ int print_envn(data_container *sh_data)
 {
 	int a, b;
 
-	for (a = 0; sh_data->_environ[a]; a++)
+	for (a = 0; sh_data->envn[a]; a++)
 	{
 
-		for (b = 0; sh_data->_environ[a][b]; b++)
+		for (b = 0; sh_data->envn[a][b]; b++)
 			;
 
-		write(STDOUT_FILENO, sh_data->_environ[a], b);
+		write(STDOUT_FILENO, sh_data->envn[a], b);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	sh_data->stat = 0;

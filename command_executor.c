@@ -34,7 +34,7 @@ char *custom_which(char *command, char **environment_variable)
 	int len_dir, len_cmd, i;
 	struct stat st;
 
-	path = custom_getenv("PATH", environment_variable);
+	path = obtain_envn("PATH", environment_variable);
 	if (path)
 	{
 		ptr_path = custom_strdup(path);
@@ -50,7 +50,7 @@ char *custom_which(char *command, char **environment_variable)
 			dir = malloc(len_dir + len_cmd + 2);
 			custom_strcpy(dir, token_path);
 			custom_strcat(dir, "/");
-			custom_strcat(dir, cmd);
+			custom_strcat(dir, command);
 			custom_strcat(dir, "\0");
 			if (stat(dir, &st) == 0)
 			{
@@ -165,12 +165,12 @@ int command_execute(data_container *data)
 	char *dir;
 	(void) wpd;
 
-	execute = _custom_is_executable(data);
+	execute = custom_is_executable(data);
 	if (execute == -1)
 		return (1);
 	if (execute == 0)
 	{
-		dir = custom_which(data->args[0], data->environment_variable);
+		dir = custom_which(data->args[0], data->envn);
 		if (verify_error_command(dir, data) == 1)
 			return (1);
 	}
@@ -179,14 +179,14 @@ int command_execute(data_container *data)
 	if (pd == 0)
 	{
 		if (execute == 0)
-			dir = custom_which(data->args[0], data->environment_variable);
+			dir = custom_which(data->args[0], data->envn);
 		else
 			dir = data->args[0];
-		execve(dir + execute, data->args, data->environment_variable);
+		execve(dir + execute, data->args, data->envn);
 	}
 	else if (pd < 0)
 	{
-		perror(data->av[0]);
+		perror(data->argv[0]);
 		return (1);
 	}
 	else
@@ -196,6 +196,6 @@ int command_execute(data_container *data)
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 
-	data->status = state / 256;
+	data->stat = state / 256;
 	return (1);
 }

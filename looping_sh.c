@@ -28,7 +28,7 @@ char *del_comment(char *insert)
 
 	if (next != 0)
 	{
-		insert = _realloc(insert, n, next + 1);
+		insert = custom_realloc(insert, n, next + 1);
 		insert[next] = '\0';
 	}
 
@@ -46,22 +46,23 @@ void looping_sh(data_container *data)
 	char *insert;
 
 	loop_sh = 1;
-	do {
+	while (loop_sh == 1)
+	{
 		write(STDIN_FILENO, "^-^ ", 4);
-		insert = read_line(&n);
+		insert = read_input(&n);
 		if (n != -1)
 		{
 			insert = del_comment(insert);
 			if (insert == NULL)
 				continue;
 
-			if (check_syntax_error(data, insert) == 1)
+			if (verify_syn_err(data, insert) == 1)
 			{
-				data->status = 2;
+				data->stat = 2;
 				free(insert);
 				continue;
 			}
-			insert = rep_var(insert, data);
+			insert = replace_var(insert, data);
 			loop_sh = crack_cmd(data, insert);
 			data->count += 1;
 			free(insert);
@@ -69,7 +70,7 @@ void looping_sh(data_container *data)
 		else
 		{
 			loop_sh = 0;
+			free(insert);
 		}
-
-	} while (loop_sh);
+	}
 }

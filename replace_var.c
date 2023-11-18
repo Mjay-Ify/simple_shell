@@ -11,15 +11,15 @@ void verify_envn(r_var **heads, char *insert, data_container *data)
 	int rows, col, n, value;
 	char **envn;
 
-	envn = data->_environ;
+	envn = data->envn;
 	for (rows = 0; envn[rows]; rows++)
 	{
 		for (n = 1, col = 0; envn[rows][col]; col++)
 		{
 			if (envn[rows][col] == '=')
 			{
-				value = _strlen(envn[rows] + col + 1);
-				add_rvar_node(heads, n, envn[rows] + col + 1, value);
+				value = custom_strlen(envn[rows] + col + 1);
+				append_to_rva(heads, n, envn[rows] + col + 1, value);
 				return;
 			}
 
@@ -32,14 +32,12 @@ void verify_envn(r_var **heads, char *insert, data_container *data)
 
 	for (n = 0; insert[n]; n++)
 	{
-		if (insert[n] == ' ' ||
-		insert[n] == '\t' ||
-		insert[n] == ';' ||
-		insert[n] == '\n')
-		break;
+		if (insert[n] == ' ' || insert[n] == '\t' ||
+			insert[n] == ';' || insert[n] == '\n')
+			break;
 	}
 
-	add_rvar_node(heads, n, NULL, 0);
+	append_to_rva(heads, n, NULL, 0);
 }
 
 /**
@@ -54,27 +52,27 @@ int verify_var(r_var **heads, char *insert, char *stat, data_container *data)
 {
 	int n, list, lpid;
 
-	list = _strlen(st);
-	lpid = _strlen(sh_data->pid);
+	list = custom_strlen(stat);
+	lpid = custom_strlen(data->pid);
 
 	for (n = 0; insert[n]; n++)
 	{
 		if (insert[n] == '$')
 		{
 			if (insert[n + 1] == '?')
-				add_rvar_node(heads, 2, stat, list), n++;
+				append_to_rva(heads, 2, stat, list), n++;
 			else if (insert[n + 1] == '$')
-				add_rvar_node(heads, 2, data->pid, lpid), n++;
+				append_to_rva(heads, 2, data->pid, lpid), n++;
 			else if (insert[n + 1] == '\n')
-				add_rvar_node(heads, 0, NULL, 0);
+				append_to_rva(heads, 0, NULL, 0);
 			else if (insert[n + 1] == '\0')
-				add_rvar_node(heads, 0, NULL, 0);
+				append_to_rva(heads, 0, NULL, 0);
 			else if (insert[n + 1] == ' ')
-				add_rvar_node(heads, 0, NULL, 0);
+				append_to_rva(heads, 0, NULL, 0);
 			else if (insert[n + 1] == '\t')
-				add_rvar_node(heads, 0, NULL, 0);
+				append_to_rva(heads, 0, NULL, 0);
 			else if (insert[n + 1] == ';')
-				add_rvar_node(heads, 0, NULL, 0);
+				append_to_rva(heads, 0, NULL, 0);
 			else
 				verify_envn(heads, insert + n, data);
 		}
@@ -101,12 +99,12 @@ char *rep_insert(r_var **list, char *insert, char *new_insert, int n_len)
 	{
 		if (insert[b] == '$')
 		{
-			if (!(index->len_var) && !(index->len_val))
+			if (!(index->len_var) && !(index->len_value))
 			{
 				new_insert[a] = insert[b];
 				b++;
 			}
-			else if (index->len_var && !(index->len_val))
+			else if (index->len_var && !(index->len_value))
 			{
 				for (n = 0; n < index->len_var; n++)
 					b++;
@@ -114,9 +112,9 @@ char *rep_insert(r_var **list, char *insert, char *new_insert, int n_len)
 			}
 			else
 			{
-				for (n = 0; n < index->len_val; n++)
+				for (n = 0; n < index->len_value; n++)
 				{
-					new_insert[a] = index->val[n];
+					new_insert[a] = index->value[n];
 					a++;
 				}
 				b += (index->len_var);
@@ -146,7 +144,7 @@ char *replace_var(char *insert, data_container *data)
 	char *stat, *new_insert;
 	int o_len, n_len;
 
-	stat = aux_itoa(data->stat);
+	stat = intToStr(data->stat);
 	list = NULL;
 	o_len = verify_var(&list, insert, stat, data);
 
@@ -161,7 +159,7 @@ char *replace_var(char *insert, data_container *data)
 
 	while (index != NULL)
 	{
-		n_len += (index->len_val - index->len_var);
+		n_len += (index->len_value - index->len_var);
 		index = index->next;
 	}
 
@@ -171,7 +169,7 @@ char *replace_var(char *insert, data_container *data)
 	new_insert = rep_insert(&list, insert, new_insert, n_len);
 	free(insert);
 	free(stat);
-	free_rvar_list(&list);
+	deallocate_rvar_list(&list);
 
 	return (new_insert);
 }

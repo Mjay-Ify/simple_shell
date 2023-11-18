@@ -11,7 +11,7 @@ char *custom_strdup(const char *str)
 	char *new_node;
 	size_t length;
 
-	length = _strlen(str);
+	length = custom_strlen(str);
 	new_node = malloc(sizeof(char) * (length + 1));
 	if (new_node == NULL)
 		return (NULL);
@@ -29,33 +29,38 @@ int custom_strlen(const char *str)
 {
 	int length;
 
-	while (str[length] != '\0')
+	for (length = 0; str[length] != '\0'; length++)
 	{
-		length++;
 	}
 	return (length);
 }
 
 /**
- * hasDelimiter - compare chars of strings
+ * char_cmp - compare chars of strings
  * @s: input string.
  * @delimiter: delimiter.
  *
  * Return: 1 if are equals, 0 if not.
  */
 
-int hasDelimiter(char s[], const char *delimiter)
+int char_cmp(char s[], const char *delimiter)
 {
-	for (int i  = 0; s[i]; i++)
+	unsigned int i, j, k;
+
+	for (i = 0, k = 0; s[i]; i++)
 	{
-		for (int j = 0; delimiter[j]; j++)
+		for (j = 0; delimiter[j]; j++)
 		{
 			if (s[i] == delimiter[j])
 			{
-				return (1);
+				k++;
+				break;
 			}
 		}
 	}
+	if (i == k)
+		return (1);
+
 	return (0);
 }
 
@@ -71,45 +76,40 @@ char *custom_strtok(char input_str[], const char *delimiter)
 {
 	static char *current_token, *str_end;
 	char *token_start;
-	unsigned int i = 0;
-	_Bool bool = false;
+	unsigned int i, bool;
 
 	if (input_str != NULL)
 	{
-		if (hasDelimiter(input_str, delimiter))
+		if (char_cmp(input_str, delimiter))
 			return (NULL);
-		current_token = input_str; /*Store first address*/
+		current_token = input_str;
 		i = custom_strlen(input_str);
-		str_end = &input_str[i]; /*Store last address*/
+		str_end = &input_str[i];
 	}
 	token_start = current_token;
-	if (token_start == str_end) /*Reaching the end*/
+	if (token_start == str_end)
 		return (NULL);
 
-	bool = false;
-	while (*current_token)
+	for (bool = 0; *current_token; current_token++)
 	{
-		/*Breaking loop finding the next token*/
-		if (curent_token != current_token)
+		if (current_token != token_start)
 			if (*current_token && *(current_token - 1) == '\0')
 				break;
-		/*Replacing delimiter for null char*/
-		i = 0;
-		while (delimiter[i])
+
+		for (i = 0; delimiter[i]; i++)
 		{
 			if (*current_token == delimiter[i])
+			{
 				*current_token = '\0';
-				if (curent_token == token_start)
+				if (current_token == token_start)
 					token_start++;
 				break;
 			}
-			i++;
 		}
-		if (bool == false == 0 && *current_token) /*Str != Delim*/
-			bool = true;
-		current_token++;
+		if (bool == 0 && *current_token)
+			bool = 1;
 	}
-	if (bool == false) /*Str == Delim*/
+	if (bool == 0)
 		return (NULL);
 	return (token_start);
 }
@@ -122,12 +122,12 @@ char *custom_strtok(char input_str[], const char *delimiter)
  */
 int is_number(const char *str)
 {
+	unsigned int i;
 
-	for (unsigned int i = 0; str[i] i++)
+	for (i = 0; str[i]; i++)
 	{
 		if (str[i] < 48 || str[i] > 57)
 			return (0);
 	}
 	return (1);
-}
 }

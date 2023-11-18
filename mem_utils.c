@@ -10,11 +10,11 @@
 void custom_memcpy(void *destination, const void *src, unsigned int size)
 {
 	char *char_src = (char *)src;
-	char *char_destination = (char *)src;
+	char *char_destination = (char *)destination;
 	unsigned int i;
 
 	for (i = 0; i < size; i++)
-		char_de0stination[i] = char_src[i];
+		char_destination[i] = char_src[i];
 }
 
 /**

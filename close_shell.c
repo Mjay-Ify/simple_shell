@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * close_shell -  Closes the shell and sets the exi
+ * close_shell -  Closes the shell and sets the exit
  * status based on the provided argument
  * @data: Pointer to the data_container structure containing shell data.
  * Return: 0
@@ -20,10 +20,10 @@ int close_shell(data_container *data)
 		if (!is_dig || len > 10 || b_num)
 		{
 			obtain_error(data, 2);
-			data->status = 2;
+			data->stat = 2;
 			return (1);
 		}
-		data->status = (status % 256);
+		data->stat = (status % 256);
 	}
 	return (0);
 }

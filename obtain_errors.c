@@ -25,7 +25,7 @@ int obtain_error(data_container *data, int val)
 		if (custom_strcmp("exit", data->args[0]) == 0)
 			err = shell_terminate_error(data);
 		else if (custom_strcmp("cd", data->args[0]) == 0)
-			err = fetch_error_custom((data);
+			err = fetch_error_custom(data);
 		break;
 	}
 

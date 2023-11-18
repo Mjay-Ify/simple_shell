@@ -9,17 +9,22 @@
 
 int count_digit(int n)
 {
+	unsigned int i;
 	int length = 1;
 
 	if (n < 0)
 	{
-		n = -n;
-		lenght++;
+		length++;
+		i = n * -1;
 	}
-	while (n > 9)
+	else
 	{
-		n /= 10;
-		lenght++;
+		i = n;
+	}
+	while (i > 9)
+	{
+		length++;
+		i = i / 10;
 	}
 
 	return (length);
@@ -30,36 +35,37 @@ int count_digit(int n)
  * @n: The integer to be converted
  * Return: A dynamically allocated string representing the integer.
  */
-char *aux_itoa(int n)
+char *intToStr(int n)
 {
-	int sign = (n < 0) ? -1 : 1;
+	unsigned int i;
+	int len = count_digit(n);
+	char *buff;
 
-	n = abs(n); /*make the number positive */
-
-	int length = (n == 0) ? 1 : 0;
-	int temp = n;
-
-	while (temp > 0)
-	{
-		temp /= 10;
-		length++;
-	}
-
-	char *buffer = malloc(sizeof(char) * (length + 1));
-
-	if (buffer == 0)
+	buff = malloc(sizeof(char) * (len + 1));
+	if (buff == 0)
 		return (NULL);
 
-	buffer[length] = '\0'; /*Null-terminate the string*/
+	*(buff + len) = '\0';
 
-	if (sign == -1)
-		buffer[0] = '-'; /* set the minus sign if the number is negative*/
-	for (int i = length - 1; i >= (sign == -1); i--)
+	if (n < 0)
 	{
-		buffer[i] = (n % 10) + '0';
-		n / 10;
+		i = n * -1;
+		buff[0] = '-';
 	}
-	return (buffer);
+	else
+	{
+		i = n;
+	}
+
+	len--;
+	do {
+		*(buff + len) = (i % 10) + '0';
+		i = i / 10;
+		len--;
+	}
+	while (i > 0)
+		;
+	return (buff);
 }
 
 /**
@@ -68,26 +74,31 @@ char *aux_itoa(int n)
  * Return: integer.
  */
 
-int custom_atoi(const char *str);
+int custom_atoi(const char *str)
 {
-	int result = 0;
-	int sign = 1;
+	unsigned int len = 0, size = 0, i = 0, n = 1, b = 1, a;
 
-	while (*str == ' ' || *str == '\t')
-		str++;
-
-	/* hangle sign*/
-	if (*str == '-')
+	while (*(str + len) != '\0')
 	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	for (; *str >= '0' && *str <= '9' str++)
-	{
-		result = result * 10 + (*str - '0');
+		if (size > 0 && (*(str + len) < '0' || *(str + len) > '9'))
+			break;
+
+		if (*(str + len) == '-')
+			n *= -1;
+
+		if ((*(str + len) >= '0') && (*(str + len) <= '9'))
+		{
+			if (size > 0)
+				b *= 10;
+			size++;
+		}
+		len++;
 	}
 
-	return (sign * result);
+	for (a = len - size; a < len; a++)
+	{
+		i = i + ((*(str + a) - 48) * b);
+		b /= 10;
+	}
+	return (i * n);
 }

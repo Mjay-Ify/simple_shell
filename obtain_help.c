@@ -14,7 +14,7 @@ int obtain_help(data_container *data)
 	if (data->args[1] == 0)
 		assist_general_command();
 	else if (custom_strcmp(data->args[1], "setenv") == 0)
-		env_setenv_support();
+		env_variable_support();
 	else if (custom_strcmp(data->args[1], "env") == 0)
 		support_env_tasks();
 	else if (custom_strcmp(data->args[1], "unsetenv") == 0)

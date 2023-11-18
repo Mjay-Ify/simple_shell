@@ -19,23 +19,16 @@ r_var *append_to_rva(r_var **list, int lvar, char *value, int lval)
 		return (NULL);
 
 	new_node->len_var = lvar;
-	new_node->len_val = lval;
-
-	new_node->value = malloc(lval);
-	if (new_node->value == NULL)
-	{
-		free(new_node);
-		return (NULL);
-	}
-	memcpy(new_node->value, value, lval);
+	new_node->len_value = lval;
+	new_node->value = value;
 
 	new_node->next = NULL;
+	temp = *list;
 
-	if (*list == NULL)
+	if (temp == NULL)
 		*list = new_node;
 	else
 	{
-		temp = *list;
 		while (temp->next != NULL)
 			temp = temp->next;
 		temp->next = new_node;
@@ -62,7 +55,6 @@ void deallocate_rvar_list(r_var **list)
 		while ((temp = current) != NULL)
 		{
 			current = current->next;
-			frr(temp->value);
 			free(temp);
 		}
 		*list = NULL;
